@@ -1,0 +1,5 @@
+export { default as Tile } from './TilePuzzle/Tile'
+export { default as TilePuzzle } from './TilePuzzle/main'
+export { default as Grid } from './Grid/main'
+export { default as Button } from './Button/main'
+export { default as TextButton } from './Button/TextButton'
