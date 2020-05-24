@@ -1,7 +1,12 @@
 import React from 'react'
 import { useSpring, animated } from 'react-spring'
 
-function GridItem({ gridPos, onComplete, grid, classes, children, style }) {
+interface Props {
+  gridPos: [number, number],
+  grid: string[][]
+}
+
+function GridItem({ gridPos, grid, className, children, style }) {
   // moves item toward gridPos
   const springStyle = useSpring({
     left: grid[gridPos[0]][gridPos[1]][0],
@@ -10,7 +15,7 @@ function GridItem({ gridPos, onComplete, grid, classes, children, style }) {
   
   return (
     <animated.div 
-      className={classes.GridItem} 
+      className={className} 
       style={Object.assign(springStyle, style)}
     >
       {children}

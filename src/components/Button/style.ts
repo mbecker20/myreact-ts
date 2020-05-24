@@ -1,8 +1,18 @@
 import {createUseStyles} from 'react-jss'
 
+interface Colors {
+  primary: string,
+  secondary: string,
+  tertiary: string
+}
+
+interface Theme {
+  colors: Colors
+}
+
 const useStyles = createUseStyles({
   Button: {
-    backgroundColor: props => props.colors.secondary,
+    backgroundColor: (theme: Theme) => theme.colors.secondary,
     position: 'absolute',
     display: 'flex',
     alignItems: 'center',

@@ -2,7 +2,7 @@ import React, { Children, isValidElement, cloneElement } from 'react'
 import useStyles from './style'
 import { makeGrid } from '../../scripts/vecFuncs'
 
-function createGridArray(padding, numRows, numCols) {
+function createGridArray(padding: number, numRows: number, numCols: number): string[][] {
   const stepLeft = (100 - 2*padding) / numCols
   const stepTop = (100 - 2*padding) / numRows
   const p0left = padding + stepLeft/2
@@ -12,17 +12,26 @@ function createGridArray(padding, numRows, numCols) {
   })
 }
 
-function GridContainer({ padding, numRows, numCols, children }) {
+interface Props {
+  padding: number,
+  numRows: number,
+  numCols: number,
+  children: any
+}
+
+interface AddToChild {
+  classes: object,
+  grid: string[][]
+}
+
+function GridContainer({ padding, numRows, numCols, children }: Props) {
   // everything done in percentages
   // children of GridContainer must be GridItem
   const grid = createGridArray(padding, numRows, numCols)
   const classes = useStyles()
   const childrenWithClasses = Children.map(children, child => {
     if(isValidElement(child)) {
-      return cloneElement(child, { 
-        classes: classes, 
-        grid: grid 
-      }, child.props.children)
+      return cloneElement(child, { className: classes.GridItem, grid: grid }, child.props.children)
     } else {
       return child
     }

@@ -1,14 +1,14 @@
 import React, {useState} from 'react'
 import NavBar from './NavBar/main'
 import { TilePuzzle } from '../components/all'
-import useStyles from './style.js'
+import useStyles from './style'
 import { useSpring, animated } from 'react-spring'
-import colors from '../appColors.js'
+import colors from '../appColors'
 
 const closedWidth = 70
 const openWidth = 230
 
-function App() {
+function App(): JSX.Element {
   const [open, toggle] = useState(false);
 
   const classes = useStyles({ colors: colors})

@@ -1,6 +1,15 @@
 import React from 'react';
 
-function TopBar({ classes, text }) {
+interface Classes {
+  TopBar: any
+}
+
+interface Props {
+  classes: Classes,
+  text: string
+}
+
+function TopBar({ classes, text }: Props): JSX.Element {
   return (
     <div className={classes.TopBar}>
       {text}

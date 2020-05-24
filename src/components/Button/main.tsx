@@ -9,9 +9,14 @@ const downShadow = '0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 0px 0 rgba(0, 0, 0, 0.
 const upFont = 'calc(10px + 2vmin)'
 const downFont = 'calc(8px + 2vmin)'
 
-function Button({ style, onClick, children }) {
+interface Props {
+  style: object,
+  onClick: () => void,
+  children: any
+}
+
+function Button({ style, onClick, children }: Props) {
   const classes = useStyles({colors: colors})
-  //const [clicked, setClicked] = useState(false)
   const [pressed, setPressed] = useState(false)
   const buttonSpring = useSpring({
     boxShadow: (pressed) ? downShadow : upShadow,
