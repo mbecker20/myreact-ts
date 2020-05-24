@@ -1,6 +1,6 @@
 import React, { Children, isValidElement, cloneElement } from 'react'
 import useStyles from './style'
-import { makeGrid } from '../../scripts/vecFuncs'
+import { makeGrid } from '../../helpers/vecFuncs'
 
 function createGridArray(padding: number, numRows: number, numCols: number): string[][] {
   const stepLeft = (100 - 2*padding) / numCols

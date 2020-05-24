@@ -1,6 +1,6 @@
-import { range } from '../../scripts/vecFuncs'
-import { randomGenInt } from '../../scripts/randomGen'
-import { arrayEqual } from '../../scripts/genFuncs'
+import { range } from '../../helpers/vecFuncs'
+import { randomGenInt } from '../../helpers/randomGen'
+import { arrayEqual } from '../../helpers/genFuncs'
 
 export function makeTileGrid() {
   const tileRange = range(1,16)
