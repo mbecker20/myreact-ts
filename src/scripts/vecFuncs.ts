@@ -1,56 +1,66 @@
-import { create, all } from 'mathjs';
+import { 
+	sqrt,
+	dot,
+	add,
+	multiply,
+} from 'mathjs';
 
-const config = {}
-const math = create(all, config);
-
-export function Mag(vec) {
-	return math.sqrt(math.dot(vec, vec));
+function anyAdd(x: any, y: any): any {
+	return add(x, y)
 }
 
-export function Unit(vec) {
+function addVec(v1: number[], v2: number[]): number[] {
+	return anyAdd(v1, v2)
+}
+
+export function Mag(vec: number[]): number {
+	return sqrt(dot(vec, vec));
+}
+
+export function Unit(vec: number[]): number[] {
 	const magnitude = Mag(vec);
 	if (magnitude !== 0) {
-		return math.multiply(vec, 1 / magnitude);
+		return multiply(vec, 1 / magnitude);
 	} else {
 		return [0, 0, 0];
 	}
 }
 
-export function Unit2(vec, mag) {
+export function UnitFromMag(vec: number[], mag: number): number[] {
 	if (mag !== 0) {
-		return math.multiply(vec, 1 / mag);
+		return multiply(vec, 1/mag);
 	} else {
 		return [0, 0, 0];
 	}
 }
 
-export function Unit2D(vec) {
+export function Unit2D(vec: number[]): number[] {
 	const magnitude = Mag(vec);
 	if (magnitude !== 0) {
-		return math.multiply(vec, 1 / magnitude);
+		return multiply(vec, 1 / magnitude);
 	} else {
 		return [0, 0];
 	}
 }
 
-export function R(v1, v2) {
+export function R(v1: number[], v2: number[]): number[] { // set return type to any to avoid add return type math.MathType which breaks everything
 	//returns vector from v1 to v2
-	return math.add(v2, math.multiply(v1, -1));
+	return addVec(v1, multiply(v1, -1))
 }
 
-export function RHat(v1, v2) {
+export function RHat(v1: number[], v2: number[]): number[] {
 	return Unit(R(v1, v2));
 }
 
-export function ScaleVecToLength(vec, length) {
-	return math.multiply(Unit(vec), length);
+export function ScaleVecToLength(vec: number[], length: number): number[] {
+	return multiply(Unit(vec), length);
 }
 
-export function ScaleVecToLength2(vec, mag, length) {
-	return math.multiply(Unit2(vec, mag), length);
+export function ScaleVecToLengthFromMag(vec: number[], mag: number, length: number): number[] {
+	return multiply(UnitFromMag(vec, mag), length);
 }
 
-export function GetAzimXZ(vec) {
+export function GetAzimXZ(vec: number[]): number | undefined {
 	// ground plane is xz
 	// from -pi to pi
 	// measures azim from pos x axis
@@ -58,17 +68,17 @@ export function GetAzimXZ(vec) {
 	// vec must be unit
 	if (vec[0] > 0) {
 		if (vec[2] > 0) {
-			return -math.atan2(vec[2], vec[0]);
+			return -Math.atan2(vec[2], vec[0]);
 		} else if (vec[2] < 0) {
-			return math.atan2(-vec[2], vec[0]);
+			return Math.atan2(-vec[2], vec[0]);
 		} else {
 			return 0;
 		}
 	} else if (vec[0] < 0) {
 		if (vec[2] > 0) {
-			return math.atan2(vec[2], -vec[0]) - Math.PI;
+			return Math.atan2(vec[2], -vec[0]) - Math.PI;
 		} else if (vec[2] < 0) {
-			return Math.PI - math.atan2(-vec[2], -vec[0]);
+			return Math.PI - Math.atan2(-vec[2], -vec[0]);
 		} else {
 			return Math.PI;
 		}
@@ -79,9 +89,10 @@ export function GetAzimXZ(vec) {
 			return Math.PI / 2;
 		}
 	}
+	return undefined
 }
 
-export function GetAzimZX(vec) {
+export function GetAzimZX(vec: number[]): number | undefined {
 	// ground plane is zx
 	// from -pi to pi
 	// measures azim from pos Z axis (direction camera points)
@@ -89,17 +100,17 @@ export function GetAzimZX(vec) {
 	// vec must be unit
 	if (vec[2] > 0) {
 		if (vec[0] > 0) {
-			return math.atan2(vec[0], vec[2]);
+			return Math.atan2(vec[0], vec[2]);
 		} else if (vec[0] < 0) {
-			return -math.atan2(-vec[0], vec[2]);
+			return -Math.atan2(-vec[0], vec[2]);
 		} else {
 			return 0;
 		}
 	} else if (vec[2] < 0) {
 		if (vec[0] > 0) {
-			return Math.PI - math.atan2(vec[0], -vec[2]);
+			return Math.PI - Math.atan2(vec[0], -vec[2]);
 		} else if (vec[0] < 0) {
-			return math.atan2(-vec[0], -vec[2]) - Math.PI;
+			return Math.atan2(-vec[0], -vec[2]) - Math.PI;
 		} else {
 			return Math.PI;
 		}
@@ -110,9 +121,10 @@ export function GetAzimZX(vec) {
 			return -Math.PI / 2;
 		}
 	}
+	return undefined
 }
 
-export function GetAzimXY(vec) {
+export function GetAzimXY(vec: number[]): number | undefined {
 	// ground plane is xy
 	// from -pi to pi
 	// measures azim from pos x axis
@@ -120,17 +132,17 @@ export function GetAzimXY(vec) {
 	// vec must be unit
 	if (vec[0] > 0) {
 		if (vec[1] > 0) {
-			return math.atan2(vec[1], vec[0]);
+			return Math.atan2(vec[1], vec[0]);
 		} else if (vec[1] < 0) {
-			return -math.atan2(-vec[1], vec[0]);
+			return -Math.atan2(-vec[1], vec[0]);
 		} else {
 			return 0;
 		}
 	} else if (vec[0] < 0) {
 		if (vec[1] > 0) {
-			return Math.PI - math.atan2(vec[1], -vec[0]);
+			return Math.PI - Math.atan2(vec[1], -vec[0]);
 		} else if (vec[1] < 0) {
-			return math.atan2(-vec[1], -vec[0]) - Math.PI;
+			return Math.atan2(-vec[1], -vec[0]) - Math.PI;
 		} else {
 			return Math.PI;
 		}
@@ -139,88 +151,86 @@ export function GetAzimXY(vec) {
 			return Math.PI / 2;
 		} else if (vec[1] < 0) {
 			return -Math.PI / 2;
-		} else {
-			return 0;
 		}
 	}
+	return undefined
 }
 
-export function GetAltAzimXZ(vec) {
+export function GetAltAzimXZ(vec: number[]): [number | undefined, number | undefined] {
 	// vec must be unit vector
 	// for xz ground plane
-	const alt = math.asin(vec[1]);
+	const alt = Math.asin(vec[1]);
 	const azim = GetAzimXZ(vec);
 	return [alt, azim];
 }
 
-export function GetAltAzimZX(vec) {
+export function GetAltAzimZX(vec: number[]): [number | undefined, number | undefined] {
 	// vec must be unit vector
 	// for xz ground, measuring from pos Z axis
 	// alt is neg bc neg rot about x rotates poz z upwards
-	const alt = -math.asin(vec[1]);
+	const alt: number = -Math.asin(vec[1]);
 	const azim = GetAzimZX(vec);
 	return [alt, azim];
 }
 
-export function GetAltAzimXY(vec) {
+export function GetAltAzimXY(vec: number[]): [number | undefined, number | undefined] {
 	// vec must be unit vector
 	// for xy ground plane
 	// alt is negative because positive rotation about yHat moves xHat away from positive zhat
-	const alt = -math.asin(vec[2]);
+	const alt = -Math.asin(vec[2]);
 	const azim = GetAzimXY(vec);
 	return [alt, azim];
 }
 
-export function AddVecToRows(mat, vec) {
+export function AddVecToRows(mat: number[][], vec: number[]): number[][] {
 	// does not work for math.js matrices. use standard js matrices. does not change input matrix.
-	const out = mat.map(function (row) {
-		return math.add(row, vec);
+	return mat.map(function(row) {
+		return addVec(row, vec);
 	})
-	return out;
 }
 
-export function GetAvgPoint(pointsMat) {
+export function GetAvgPoint(pointsMat: number[][]): number[] {
 	let avg = [0, 0, 0];
 	pointsMat.forEach(function (point) {
-		avg = math.add(avg, point);
+		avg = addVec(avg, point);
 	});
-	return math.divide(avg, pointsMat.length);
+	return multiply(avg, 1 / pointsMat.length);
 }
 
-export function GetAvgPoint2D(pointsMat) {
+export function GetAvgPoint2D(pointsMat: number[][]): number[] {
 	let avg = [0, 0];
 	pointsMat.forEach(function (point) {
-		avg = math.add(avg, point);
+		avg = addVec(avg, point);
 	});
-	return math.divide(avg, pointsMat.length);
+	return multiply(avg, 1 / pointsMat.length);
 }
 
-export function ArrSum(arrayOfNums) {
+export function ArrSum(arrayOfNums: number[]): number {
 	return arrayOfNums.reduce(function (a, b) {
 		return a + b;
 	}, 0);
 }
 
-export function GetAvgNum(arrayOfNums) {
+export function GetAvgNum(arrayOfNums: number[]): number {
 	return ArrSum(arrayOfNums) / arrayOfNums.length;
 }
 
-export function toPolar(x, y) {
+export function toPolar(x: number, y: number): [number, number | undefined] {
 	const r = Mag([x, y]);
 	const theta = GetAzimXY([x, y]);
 	return [r, theta];
 }
 
-export function fromPolar(r, theta) {
-	return [r * math.cos(theta), r * math.sin(theta)]
+export function fromPolar(r: number, theta: number): [number, number] {
+	return [r * Math.cos(theta), r * Math.sin(theta)]
 }
 
-export function rot2D(point, alpha) { //rotates clockwise with y pointing down
-	let rotMat = [[math.cos(alpha), math.sin(alpha)], [-math.sin(alpha), math.cos(alpha)]];
-	return math.multiply(point, rotMat);
+export function rot2D(point: number[], alpha: number): number[] { //rotates clockwise with y pointing down
+	let rotMat: number[][] = [[Math.cos(alpha), Math.sin(alpha)], [-Math.sin(alpha), Math.cos(alpha)]];
+	return multiply(point, rotMat);
 }
 
-export function range(start, stop) {
+export function range(start: number, stop: number): number[] {
 	// returns list of integers from start (inclusive) to stop (exclusive)
 	var out = [];
 	for (var i = start; i < stop; i++) {
@@ -229,7 +239,7 @@ export function range(start, stop) {
 	return out;
 }
 
-export function linspace(start, stop, N) {
+export function linspace(start: number, stop: number, N: number): number[] {
 	// N is length of linspace array
 	const step = (stop - start) / (N - 1);
 	let space = [];
@@ -239,17 +249,17 @@ export function linspace(start, stop, N) {
 	return space
 }
 
-export function linspace2D(start, stop, N) {
+export function linspace2D(start: number[], stop: number[], N: number): number[][] {
 	// N is length of linspace array
-	const step = math.multiply(math.add(stop, math.multiply(-1, start)), 1 / (N - 1));
-	let space = [];
+	const step = multiply(addVec(stop, multiply(start, -1)), 1 / (N - 1));
+	let space: number[][] = [];
 	for (var i = 0; i < N; i++) {
-		space.push(math.add(start, math.multiply(step, i)));
+		space.push(addVec(start, multiply(step, i)));
 	}
 	return space
 }
 
-export function makeGrid(numRows, numCols, valFunc) {
+export function makeGrid(numRows: number, numCols: number, valFunc: (i: number, j: number) => any): any[][] {
 	// produces a grid of zeros
 	// valFunc is func of grid position (i and j)
 	let out = [];
@@ -263,7 +273,7 @@ export function makeGrid(numRows, numCols, valFunc) {
 	return out;
 }
 
-export function makeGridMap(grid) {
+export function makeGridMap(grid: any[][]): Map<any, any> {
 	// returns map of linear indices to grid positions
 	let gridMap = new Map();
 
@@ -278,7 +288,7 @@ export function makeGridMap(grid) {
 	return gridMap;
 }
 
-export function zeroes(length) {
+export function zeroes(length: number): number[] {
 	let space = []
 	for (var i = 0; i < length; i++) {
 		space.push(0)
@@ -286,7 +296,13 @@ export function zeroes(length) {
 	return space
 }
 
-export function rk4(derivs, params, xy0, dt, t) {
+export function rk4(
+	derivs: (x: number, y: number, params: object, t: number) => [number, number], 
+	params: object, 
+	xy0: [number, number], 
+	dt: number, 
+	t: number
+): [number, number] {
 	//derivs is func of x, y, params, t that returns [xDot,yDot]
 	//this func returns update x,y after one step of dt
 	const x0 = xy0[0];
@@ -300,18 +316,23 @@ export function rk4(derivs, params, xy0, dt, t) {
 	return [x0 + k * dt, y0 + l * dt];
 }
 
-export function rk4Double(deriv, xy0, dt) {
+export function rk4Double(
+	deriv: (x: number[], v: number[], params: object) => [number[], number[]], 
+	xv0: [number[], number[]], 
+	params: object,
+	dt: number
+): [number[], number[]] {
 	//performs 2D rk4 for xDoubleDot=f(x)
 	//deriv is func of x=[x,y], v=[xDot,yDot], and params, returns [v,a]
 	//xy0=[[x,y],v=[xDot,yDot]]
 	//this func returns [x,v] after one step
-	const x0 = xy0[0];
-	const y0 = xy0[1];
-	const k1 = deriv(x0, y0);
-	const k2 = deriv(math.add(x0, math.multiply(k1[0], dt / 2)), math.add(y0, math.multiply(k1[1], dt / 2)));
-	const k3 = deriv(math.add(x0, math.multiply(k2[0], dt / 2)), math.add(y0, math.multiply(k2[1], dt / 2)));
-	const k4 = deriv(math.add(x0, math.multiply(k3[0], dt / 2)), math.add(y0, math.multiply(k3[1], dt / 2)));;
-	const k = math.multiply(math.add(k1[0], math.multiply(k2[0], 2), math.multiply(k3[0], 2), k4[0]), (1 / 6));
-	const l = math.multiply(math.add(k1[1], math.multiply(k2[1], 2), math.multiply(k3[1], 2), k4[1]), (1 / 6));
-	return [math.add(x0, math.multiply(k, dt)), math.add(y0, math.multiply(l, dt))];
+	const x0 = xv0[0];
+	const v0 = xv0[1];
+	const k1 = deriv(x0, v0, params);
+	const k2 = deriv(addVec(x0, multiply(k1[0], dt / 2)), addVec(v0, multiply(k1[1], dt / 2)), params);
+	const k3 = deriv(addVec(x0, multiply(k2[0], dt / 2)), addVec(v0, multiply(k2[1], dt / 2)), params);
+	const k4 = deriv(addVec(x0, multiply(k3[0], dt / 2)), addVec(v0, multiply(k3[1], dt / 2)), params);;
+	const k = multiply(addVec(addVec(k1[0], multiply(k2[0], 2)), addVec(multiply(k3[0], 2), k4[0])), (1 / 6));
+	const l = multiply(addVec(addVec(k1[1], multiply(k2[1], 2)), addVec(multiply(k3[1], 2), k4[1])), (1 / 6));
+	return [addVec(x0, multiply(k, dt)), addVec(v0, multiply(l, dt))];
 }
