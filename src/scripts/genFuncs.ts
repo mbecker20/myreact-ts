@@ -9,11 +9,11 @@ export function stringIn(str: string, ar: Array<any>): boolean {
 	return false
 }
 
-export function bothStringsIn(str1: string, str2: string, ar: Array<any>) {
+export function bothStringsIn(str1: string, str2: string, ar: any[]) {
 	return (stringIn(str1, ar) && stringIn(str2, ar))
 }
 
-export function switchVarIntoList(variable: any, list: Array<any>, index: number) {
+export function switchVarIntoList(variable: any, list: any[], index: number) {
 	// variable is set to list[index]
 	// puts variable into list at index (replacing what's there)
 	// ex. variable = GF.SwitchVarIntoList(variable, list, index);
