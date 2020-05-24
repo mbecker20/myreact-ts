@@ -1,4 +1,4 @@
-export function stringIn(str: string, ar: Array<any>): boolean {
+export function stringIn(str: string, ar: any[]): boolean {
 	// returns true if string is an element of array
 	// false otherwise
 	for (var i = 0; i < ar.length; i++) {
