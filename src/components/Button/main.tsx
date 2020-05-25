@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState} from 'react'
 import useStyles from './style'
 import { animated, useSpring } from 'react-spring'
 import colors from '../../appColors'

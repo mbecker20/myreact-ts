@@ -14,8 +14,8 @@ interface Props {
 }
 
 function NavBar({ classes, navProps, onSideBarClick }: Props): JSX.Element {
-  const topText: string = 'Top Bar'
-  const sideText: string = 'Side Bar'
+  const topText = 'Top Bar'
+  const sideText = 'Side Bar'
   return (
     <React.Fragment>
       <TopBar classes={classes} text={topText}/>

@@ -1,4 +1,5 @@
 import {createUseStyles} from 'react-jss'
+import { Theme } from '../../appColors'
 
 const useStyles = createUseStyles({
   Bounder: {
@@ -11,7 +12,7 @@ const useStyles = createUseStyles({
   },
 
   TilePuzzle: {
-    backgroundColor: props => props.colors.primary,
+    backgroundColor: (props: Theme) => props.colors.primary,
     position: 'absolute',
     display: 'flex',
     alignItems: 'center',
@@ -24,7 +25,7 @@ const useStyles = createUseStyles({
   },
 
   Tile: {
-    backgroundColor: props => props.colors.secondary,
+    backgroundColor: (props: Theme) => props.colors.secondary,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -42,7 +43,7 @@ const useStyles = createUseStyles({
   },
 
   Solved: {
-    backgroundColor: props => props.colors.secondary,
+    backgroundColor: (props: Theme) => props.colors.secondary,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',

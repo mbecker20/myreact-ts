@@ -1,16 +1,7 @@
 import { createUseStyles } from 'react-jss'
+import { Theme } from '../appColors'
 
 // useStyles will input a props object
-
-interface Colors {
-  primary: string,
-  secondary: string,
-  tertiary: string
-}
-
-interface Theme {
-  colors: Colors
-}
 
 const useStyles = createUseStyles({
   NavBar: {

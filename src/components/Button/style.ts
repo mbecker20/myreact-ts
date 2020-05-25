@@ -1,14 +1,5 @@
 import {createUseStyles} from 'react-jss'
-
-interface Colors {
-  primary: string,
-  secondary: string,
-  tertiary: string
-}
-
-interface Theme {
-  colors: Colors
-}
+import { Theme } from '../../appColors'
 
 const useStyles = createUseStyles({
   Button: {

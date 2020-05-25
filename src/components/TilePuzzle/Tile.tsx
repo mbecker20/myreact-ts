@@ -1,7 +1,13 @@
 import React from 'react';
 import { animated } from 'react-spring'
 
-function Tile({ classes, number, onClick}) {
+interface Props {
+  classes: any,
+  number: number,
+  onClick: () => void
+}
+
+function Tile({ classes, number, onClick}: Props) {
   return (
     <animated.div 
       className={classes.Tile} 

@@ -2,32 +2,49 @@ import { range } from '../../helpers/vecFuncs'
 import { randomGenInt } from '../../helpers/randomGen'
 import { arrayEqual } from '../../helpers/genFuncs'
 
-export function makeTileGrid() {
+interface Tile {
+  position: [number, number],
+  solvedPosition: [number, number]
+}
+
+interface Empty {
+  position: [number, number],
+  isEmpty: boolean
+}
+
+export interface TileGrid {
+  tileRange: number[],
+  empty: Empty,
+  [index: number]: Tile
+}
+
+export function makeTileGrid(): TileGrid {
   const tileRange = range(1,16)
-  let tileGrid = new Map()
-  tileGrid.set('tileRange', tileRange)
+  let tg: any = {}
+  tg.tileRange = range(1,16)
 
   for (var i=0; i<tileRange.length; i++) {
     var row = Math.floor((tileRange[i] - 1)/4)
     var col = (tileRange[i]-1) % 4
-    tileGrid.set(tileRange[i], {
+    tg[tileRange[i]] = {
       position: [row, col],
       solvedPosition: [row, col],
-    })
+    }
   }
 
-  tileGrid.set('empty', {
+  tg.empty = {
     position: [3,3],
     isEmpty: true
+  }
 
-  })
+  const tileGrid: TileGrid = tg
 
   return tileGrid
 }
 
-function nextToEmpty(tileGrid, tileIndex) {
-  const tilePos = tileGrid.get(tileIndex).position
-  const emptyPos = tileGrid.get('empty').position
+function nextToEmpty(tileGrid: TileGrid, tileIndex: number) {
+  const tilePos = tileGrid[tileIndex].position
+  const emptyPos = tileGrid.empty.position
   if (emptyPos[0] === tilePos[0]) {
     return (
       emptyPos[1] === tilePos[1] - 1 || 
@@ -39,10 +56,11 @@ function nextToEmpty(tileGrid, tileIndex) {
       emptyPos[0] === tilePos[0] + 1
     )
   }
+  return false
 }
 
-function getRandIndexNextToEmpty(tileGrid) {
-  const tileRange = tileGrid.get('tileRange')
+function getRandIndexNextToEmpty(tileGrid: TileGrid) {
+  const tileRange = tileGrid.tileRange
   let indices = []
   for(var i = 0; i < tileRange.length; i++) {
     if (nextToEmpty(tileGrid, tileRange[i])) {
@@ -52,11 +70,11 @@ function getRandIndexNextToEmpty(tileGrid) {
   return indices[randomGenInt(0,indices.length-1)]
 }
 
-function isSolvedRec(tileGrid, index) {
+function isSolvedRec(tileGrid: TileGrid, index: number): boolean {
   if (index === 0) {
     return true
   } else {
-    const tile = tileGrid.get(index)
+    const tile = tileGrid[index]
     if (arrayEqual(tile.position, tile.solvedPosition)) {
       return isSolvedRec(tileGrid, index - 1)
     } else {
@@ -65,21 +83,19 @@ function isSolvedRec(tileGrid, index) {
   }
 }
 
-export function isSolved(tileGrid) {
+export function isSolved(tileGrid: TileGrid) {
   return isSolvedRec(tileGrid, 15)
 }
 
-export function moveToEmpty(tileGrid, tileIndex) {
+export function moveToEmpty(tileGrid: TileGrid, tileIndex: number) {
   if (nextToEmpty(tileGrid, tileIndex)) {
-    const tile = tileGrid.get(tileIndex)
-    const empty = tileGrid.get('empty')
-    const temp = tile.position
-    tile.position = empty.position
-    empty.position = temp
+    const temp = tileGrid[tileIndex].position
+    tileGrid[tileIndex].position = tileGrid.empty.position
+    tileGrid.empty.position = temp
   }
 }
 
-export function shuffleTiles(tileGrid, numMoves) {
+export function shuffleTiles(tileGrid: TileGrid, numMoves: number) {
   // performes instant shuffling of tiles
   for (var i = 0 ; i < numMoves; i++) {
     moveToEmpty(tileGrid, getRandIndexNextToEmpty(tileGrid))

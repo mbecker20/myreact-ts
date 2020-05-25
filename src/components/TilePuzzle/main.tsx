@@ -2,16 +2,24 @@ import React, {useState} from 'react'
 import { animated, useSpring } from 'react-spring'
 import useStyles from './style'
 import colors from '../../appColors'
-import { Grid, Tile, TextButton } from '../all'
+import { Tile, TextButton } from '../all'
+import makeLayoutGrid from '../Grid/main'
 import { moveToEmpty, makeTileGrid, shuffleTiles, isSolved } from './funcs'
+
+const layoutGrid = makeLayoutGrid(5, 4, 4)
 
 let tileGrid = makeTileGrid()
 shuffleTiles(tileGrid, 150)
 
-function PuzzleGrid({ classes, setSolved }) {
+interface PG {
+  classes: object,
+  setSolved: (solved: boolean) => void
+}
+
+function PuzzleGrid({ classes, setSolved }: PG) {
   const [numMoves, setState] = useState(0)
 
-  function innerMoveToEmpty(tileIndex) {
+  function innerMoveToEmpty(tileIndex: number) {
     moveToEmpty(tileGrid, tileIndex)
     if (isSolved(tileGrid)) {
       setSolved(true)
@@ -22,17 +30,19 @@ function PuzzleGrid({ classes, setSolved }) {
   }
 
   return (
-    <Grid.Container padding={5} numRows={4} numCols={4}>
-      {tileGrid.get('tileRange').map((number) => {
+    <layoutGrid.Container>
+      {tileGrid.tileRange.map((number) => {
         return (
-          <Grid.Item key={number} gridPos={tileGrid.get(number).position} onComplete={() => console.log('complete')}>
+          <layoutGrid.Item key={number} gridPos={tileGrid[number].position} >
             <Tile classes={classes} number={number} onClick={() => innerMoveToEmpty(number)}/>
-          </Grid.Item>
+          </layoutGrid.Item>
         )
       })}
-    </Grid.Container>
+    </layoutGrid.Container>
   )
 }
+
+const boundingGrid = makeLayoutGrid(0, 7, 1)
 
 function TilePuzzle() {
   const classes = useStyles({ colors: colors });
@@ -51,28 +61,28 @@ function TilePuzzle() {
   
   return (
     <div className={classes.Bounder}>
-      <Grid.Container padding={0} numRows={7} numCols={1}>
-        <Grid.Item gridPos={[3,0]}>
+      <boundingGrid.Container>
+        <boundingGrid.Item gridPos={[3,0]}>
           <div className={classes.TilePuzzle}>
             <PuzzleGrid 
               classes={classes}
               setSolved={setSolved}
             />
           </div>
-        </Grid.Item>
-        <Grid.Item gridPos={[6,0]}>
+        </boundingGrid.Item>
+        <boundingGrid.Item gridPos={[6,0]}>
           <TextButton text='shuffle' onClick={innerShuffle} style={{
               width: '18vmin',
               height: '8vmin',
               transform: 'translate(-50%, -50%)'
             }}/>
-        </Grid.Item>
-        <Grid.Item gridPos={[0,0]}>
+        </boundingGrid.Item>
+        <boundingGrid.Item gridPos={[0,0]}>
           <animated.div className={classes.Solved} style={solvedSpring}>
             Solved!
           </animated.div>
-        </Grid.Item>
-      </Grid.Container>
+        </boundingGrid.Item>
+      </boundingGrid.Container>
     </div>
   )
 }
