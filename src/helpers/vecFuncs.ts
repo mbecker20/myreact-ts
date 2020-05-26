@@ -5,12 +5,8 @@ import {
 	multiply,
 } from 'mathjs';
 
-function anyAdd(x: any, y: any): any {
-	return add(x, y)
-}
-
 function addVec(v1: number[], v2: number[]): number[] {
-	return anyAdd(v1, v2)
+	return add(v1, v2) as number[]
 }
 
 export function Mag(vec: number[]): number {
