@@ -4,7 +4,7 @@ import useStyles from './style'
 import colors from '../../appColors'
 import { Tile, TextButton } from '../all'
 import makeLayoutGrid from '../Grid/main'
-import { moveToEmpty, makeTileGrid, shuffleTiles, isSolved } from './funcs'
+import { moveToEmpty, makeTileGrid, shuffleTiles, isSolved } from './helpers'
 
 const layoutGrid = makeLayoutGrid(5, 4, 4)
 
