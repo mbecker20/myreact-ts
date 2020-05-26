@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import NavBar from './NavBar/main'
-import { TilePuzzle, ChessGame } from '../components/all'
+import { TilePuzzle } from '../components/all'
 import { useSpring, animated } from 'react-spring'
 import { Router, Link } from '@reach/router'
 import useStyles from './style'
@@ -8,6 +8,8 @@ import colors from '../appColors'
 
 const closedWidth = 70
 const openWidth = 230
+
+const AnimatedRouter = animated(Router)
 
 function App(): JSX.Element {
   const [open, toggle] = useState(false);
@@ -25,16 +27,15 @@ function App(): JSX.Element {
 
   return (
     <div>
-      <NavBar classes={classes} navProps={navProps} onSideBarClick={onSideBarClick} />
-      <animated.div className={classes.AppContent} style={{
+      <NavBar classes={classes} navProps={navProps} onSideBarClick={onSideBarClick}>
+        <Link to='/tilepuzzle'>Tile Puzzle</Link>
+      </NavBar>
+      <AnimatedRouter className={classes.AppContent} style={{
         left: navProps.width,
         ...contentSpring
       }}>
-        <Router>
-          <TilePuzzle path='/tilepuzzle'/>
-          <ChessGame path='/chess' />
-        </Router>
-      </animated.div>
+        <TilePuzzle path='/tilepuzzle'/>
+      </AnimatedRouter>
     </div>
   )
 }

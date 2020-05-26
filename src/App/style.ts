@@ -33,7 +33,6 @@ const useStyles = createUseStyles({
     justifyContent: 'center',
     fontSize: 'calc(10px + 2vmin)',
     color: 'white',
-    writingMode: 'vertical-rl',
     textOrientation: 'upright',
     position: 'absolute',
     top: '80px',
@@ -51,7 +50,12 @@ const useStyles = createUseStyles({
     color: 'white',
     position: 'absolute',
     top: '80px',
-  }
+  },
+
+  Router: {
+    width: '100%',
+    height: '100%',
+  },
 })
 
 export default useStyles;

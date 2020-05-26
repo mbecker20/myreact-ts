@@ -14,12 +14,21 @@ interface Props {
   children: any
 }
 
+const grid = makeLayoutGrid(0, 8, 1)
+
 function SideBar({ classes, navProps, onClick, children }: Props): JSX.Element {
   return (
     <animated.div className={classes.SideBar} style={navProps} onClick={onClick}>
-      {Children.map(children, (child, index) => {
-
-      })}
+      <grid.Container>
+        <grid.Item gridPos={[0,0]}>SideBar</grid.Item>
+        {Children.map(children, (child, index) => {
+          return (
+            <grid.Item key={index} gridPos={[index+1,0]}>
+              {child}
+            </grid.Item>
+          )
+        })}
+      </grid.Container>
     </animated.div>
   )
 }
