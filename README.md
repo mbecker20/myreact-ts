@@ -1,44 +1,64 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# API:
 
-## Available Scripts
+## Components:
+  
+### Item Components:
+  
+**Tile** <br />
+*inputs*: { classes: JSSobject, number, onClick }
 
-In the project directory, you can run:
+**TilePuzzle** <br />
+*inputs*: { none }
 
-### `npm start`
+**Button** <br />
+*inputs*: { style: object, onClick: function }
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+**TextButton** <br />
+*inputs*: { text: string, style: object }
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Utility Components:
 
-### `npm test`
+**Grid.Container** <br />
+*inputs*: { padding: number, numRows: number, numCols:number }
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Grid.Item** <br />
+*inputs*: { gridPos: Array(2)[number] }
 
-### `npm run build`
+**Grid Example** <br />
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+      import { Grid } from './componenents/all'
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+      <Grid.Container padding={5} numRows={4} numCols={4}>
+        <Grid.Item gridPos={[1,2]}>
+          <h1>grid example</h1>
+        </Grid.Item>
+      </Grid.Container>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Javascript Functions:
 
-### `npm run eject`
+**range** <br />
+*inputs*: { start: integer, stop: integer } <br />
+*location*: { src/helpers/vecFuncs.js } <br />
+*description*: { generates array of integers from start (inclusive) to stop (exclusive) }
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**makeGrid** <br />
+*inputs*: { numRows: integer, numCols: integer, valFunc: function }  <br />
+*location*: { src/helpers/vecFuncs.js }
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**randomGen** <br />
+*inputs*: { min: number, max: number } <br />
+*location*: { src/helpers/randomGen.js } <br />
+*description*: { generates random number between max and min, inclusive of both }
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+**randomGenInt** <br />
+*inputs*: { min: number, max: number } <br />
+*location*: { src/helpers/randomGen.js } <br />
+*description*: { generates random integer between max and min, inclusive of both }
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+# Structure:
 
-## Learn More
+Components are in the 'src/components' folder. Each component is a folder which contains the javascript
+for the component in main.js, as well as a 'style.js' to create jss (and maybe additional css) to style the component. Sub components necessary to exported component are in this folder as well. To make importing easier, the component is then re-exported from /components/all.js.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Because NavBar component is tied in so closely with style of whole app,
+style for NavBar is placed into style.js of App.
