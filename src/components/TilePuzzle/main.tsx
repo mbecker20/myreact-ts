@@ -5,6 +5,7 @@ import colors from '../../appColors'
 import { Tile, TextButton } from '../all'
 import makeLayoutGrid from '../Grid/main'
 import { moveToEmpty, makeTileGrid, shuffleTiles, isSolved } from './helpers'
+import { RouteComponentProps } from '@reach/router'
 
 const layoutGrid = makeLayoutGrid(5, 4, 4)
 
@@ -44,7 +45,7 @@ function PuzzleGrid({ classes, setSolved }: PG) {
 
 const boundingGrid = makeLayoutGrid(0, 7, 1)
 
-function TilePuzzle() {
+function TilePuzzle(props: RouteComponentProps) {
   const classes = useStyles({ colors: colors });
   const [shuffleCount, setShuffleCount] = useState(0)
   const [solved, setSolved] = useState(false)

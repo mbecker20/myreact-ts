@@ -1,8 +1,9 @@
 import React, {useState} from 'react'
 import NavBar from './NavBar/main'
-import { TilePuzzle } from '../components/all'
-import useStyles from './style'
+import { TilePuzzle, ChessGame } from '../components/all'
 import { useSpring, animated } from 'react-spring'
+import { Router, Link } from '@reach/router'
+import useStyles from './style'
 import colors from '../appColors'
 
 const closedWidth = 70
@@ -19,11 +20,6 @@ function App(): JSX.Element {
   })
 
   function onSideBarClick() {
-    /*
-    if (navProps.width.done) {
-      toggle(!open)
-    }
-    */
     toggle(!open)
   }
 
@@ -34,7 +30,10 @@ function App(): JSX.Element {
         left: navProps.width,
         ...contentSpring
       }}>
-        <TilePuzzle />
+        <Router>
+          <TilePuzzle path='/tilepuzzle'/>
+          <ChessGame path='/chess' />
+        </Router>
       </animated.div>
     </div>
   )
