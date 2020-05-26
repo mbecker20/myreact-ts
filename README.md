@@ -30,7 +30,7 @@
 
 **Grid Example** <br />
 
-      import { makeLayoutGrid } from './componenents/Grid/main'
+      import makeLayoutGrid from './componenents/Grid/main'
 
       const padding = 5
       const numRows = 4
