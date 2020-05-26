@@ -18,21 +18,31 @@
 
 ### Utility Components:
 
+**makeLayoutGrid** <br />
+*inputs*: { padding: number, numRows: number, numCols: number }
+*description*: { creates the grid object that holds the container and item components }
+
 **Grid.Container** <br />
-*inputs*: { padding: number, numRows: number, numCols:number }
+*inputs*: { style: object }
 
 **Grid.Item** <br />
-*inputs*: { gridPos: Array(2)[number] }
+*inputs*: { gridPos: Array(2)[number], style: object }
 
 **Grid Example** <br />
 
-      import { Grid } from './componenents/all'
+      import { makeLayoutGrid } from './componenents/Grid/main'
 
-      <Grid.Container padding={5} numRows={4} numCols={4}>
-        <Grid.Item gridPos={[1,2]}>
+      const padding = 5
+      const numRows = 4
+      const numCols = 4
+
+      const layoutGrid = makeLayoutGrid(padding, numRows, numCols)
+
+      <layoutGrid.Container>
+        <layoutGrid.Item gridPos={[1,2]}>
           <h1>grid example</h1>
-        </Grid.Item>
-      </Grid.Container>
+        </layoutGrid.Item>
+      </layoutGrid.Container>
 
 ## Javascript Functions:
 
