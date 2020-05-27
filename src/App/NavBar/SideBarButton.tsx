@@ -15,7 +15,6 @@ interface BaseProps {
 
 interface BaseStyle {
 	height: string,
-	transform: string,
 	position: string,
 	backgroundColor: string,
 }
@@ -23,8 +22,7 @@ interface BaseStyle {
 const baseStyle: BaseStyle = {
 	height: '7vh',
 	position: 'absolute',
-	transform: 'translate(-50%, -50%)',
-	backgroundColor: colors.primary
+	backgroundColor: colors.primary,
 }
 
 interface BaseTextStyle {

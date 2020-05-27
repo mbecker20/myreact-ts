@@ -80,7 +80,6 @@ function TilePuzzle(props: RouteComponentProps) {
           <TextButton text='shuffle' onClick={innerShuffle} style={{
               width: '18vmin',
               height: '8vmin',
-              transform: 'translate(-50%, -50%)'
             }}/>
         </boundingGrid.Item>
         <boundingGrid.Item gridPos={[0,0]}>

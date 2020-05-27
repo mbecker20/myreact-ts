@@ -7,7 +7,7 @@ const upShadow = '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.1
 const downShadow = '0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 0px 0 rgba(0, 0, 0, 0.19)'
 
 const upFont = 'calc(10px + 2vmin)'
-const downFont = 'calc(8px + 2vmin)'
+const downFont = 'calc(9px + 2vmin)'
 
 interface Props {
   style?: object,
@@ -19,8 +19,9 @@ function Button({ style, onClick, children }: Props) {
   const classes = useStyles({colors: colors})
   const [pressed, setPressed] = useState(false)
   const buttonSpring = useSpring({
-    boxShadow: (pressed) ? downShadow : upShadow,
-    fontSize: (pressed) ? downFont : upFont,
+    boxShadow: pressed ? downShadow : upShadow,
+    fontSize: pressed ? downFont : upFont,
+    transform: pressed ? 'translate(-50%, -50%) scale(0.95)' : 'translate(-50%, -50%) scale(1)'
   })
   return (
     <animated.div 
