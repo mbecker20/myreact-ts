@@ -24,8 +24,10 @@ function PuzzleGrid({ classes, setSolved }: PG) {
     moveToEmpty(tileGrid, tileIndex)
     if (isSolved(tileGrid)) {
       setSolved(true)
+      permaSolved = true
     } else {
       setSolved(false)
+      permaSolved = false
     }
     setState(numMoves + 1)
   }
@@ -44,20 +46,23 @@ function PuzzleGrid({ classes, setSolved }: PG) {
 }
 
 const boundingGrid = makeLayoutGrid(0, 7, 1)
+let permaSolved = false
 
 function TilePuzzle(props: RouteComponentProps) {
   const classes = useStyles({ colors: colors });
   const [shuffleCount, setShuffleCount] = useState(0)
-  const [solved, setSolved] = useState(false)
+  const [solved, setSolved] = useState(permaSolved)
 
   const solvedSpring = useSpring({
-    opacity: solved ? 1 : 0
+    opacity: solved ? 1 : 0,
+    transform: solved ? 'translate(-50%, -50%) scale(1)' : 'translate(-50%, -50%) scale(0)'
   })
   
   function innerShuffle() {
     shuffleTiles(tileGrid, 150)
     setShuffleCount(shuffleCount + 1)
     setSolved(false)
+    permaSolved = false
   }
   
   return (

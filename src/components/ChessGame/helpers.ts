@@ -41,6 +41,8 @@ function makeBoardGrid(): string[][] {
 export function makeChessBoard(): ChessBoard {
   return {
     boardGrid: makeBoardGrid(),
-    moveList: []
+    moveList: [],
+    whitePieces: [],
+    blackPieces: [],
   }
 }

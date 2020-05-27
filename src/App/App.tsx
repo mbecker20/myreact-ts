@@ -1,40 +1,80 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import NavBar from './NavBar/main'
-import { TilePuzzle } from '../components/all'
+import SideBarButton from './NavBar/SideBarButton'
+import { TilePuzzle, ChessGame } from '../components/all'
 import { useSpring, animated } from 'react-spring'
-import { Router, Link } from '@reach/router'
+import { Router, navigate } from '@reach/router'
 import useStyles from './style'
 import colors from '../appColors'
+import Homepage from './Homepage'
 
+// set open / close menu size (in pixels)
 const closedWidth = 70
 const openWidth = 230
 
+// create an animated router component to use to show content
 const AnimatedRouter = animated(Router)
+
+// create a context to be passed 
 
 function App(): JSX.Element {
   const [open, toggle] = useState(false);
 
   const classes = useStyles({ colors: colors})
 
-  const navProps = useSpring({ width: open ? openWidth : closedWidth })
   const contentSpring = useSpring({ 
-    width: open ? `calc(100vw - ${openWidth}px)` : `calc(100vw - ${closedWidth}px)`
+    width: open ? `calc(100vw - ${openWidth}px)` : `calc(100vw - ${closedWidth}px)`,
+    left: open ? openWidth : closedWidth,
   })
 
-  function onSideBarClick() {
+  function toggleOpen() {
     toggle(!open)
   }
 
   return (
     <div>
-      <NavBar classes={classes} navProps={navProps} onSideBarClick={onSideBarClick}>
-        <Link to='/tilepuzzle'>Tile Puzzle</Link>
+      <NavBar 
+        isOpen={open}
+        toggleOpen={toggleOpen}
+        openWidth={openWidth}
+        closedWidth={closedWidth}
+        classes={classes}
+      >
+        <SideBarButton 
+          isOpen={open}
+          openWidth={openWidth}
+          closedWidth={closedWidth}
+          openText='Home'
+          closedText='H'
+          onClick={() => {
+            navigate('/')
+          }}
+        />
+        <SideBarButton 
+          isOpen={open}
+          openWidth={openWidth}
+          closedWidth={closedWidth}
+          openText='TilePuzzle'
+          closedText='T'
+          onClick={() => {
+            navigate('/tilepuzzle')
+          }}
+        />
+        <SideBarButton 
+          isOpen={open}
+          openWidth={openWidth}
+          closedWidth={closedWidth}
+          openText='Chess'
+          closedText='C'
+          onClick={() => {
+            navigate('/chess')
+          }}
+        />
       </NavBar>
-      <AnimatedRouter className={classes.AppContent} style={{
-        left: navProps.width,
-        ...contentSpring
-      }}>
-        <TilePuzzle path='/tilepuzzle'/>
+      <AnimatedRouter className={classes.AppContent} style={contentSpring}>
+        <Homepage path='/' />
+        <TilePuzzle path='/tilepuzzle' />
+        <ChessGame path='/chess' />
       </AnimatedRouter>
     </div>
   )

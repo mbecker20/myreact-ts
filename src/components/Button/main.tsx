@@ -10,7 +10,7 @@ const upFont = 'calc(10px + 2vmin)'
 const downFont = 'calc(8px + 2vmin)'
 
 interface Props {
-  style: object,
+  style?: object,
   onClick: () => void,
   children: any
 }

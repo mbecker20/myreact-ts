@@ -8,23 +8,26 @@ interface Classes {
 }
 
 interface Props {
+  isOpen: boolean,
+  toggleOpen: () => void,
+  openWidth: number,
+  closedWidth: number,
   classes: Classes,
-  navProps: object,
-  onSideBarClick: () => void,
   children: any
 }
 
-function NavBar({ classes, navProps, onSideBarClick, children }: Props): JSX.Element {
-  const topText = 'Top Bar'
-  const sideText = 'Side Bar'
+const topText = 'My React'
+
+function NavBar({ isOpen, toggleOpen, openWidth, closedWidth, classes, children }: Props): JSX.Element {
   return (
     <React.Fragment>
       <TopBar classes={classes} text={topText}/>
-      <SideBar 
-        classes={classes} 
-        navProps={navProps} 
-        text={sideText} 
-        onClick={onSideBarClick} 
+      <SideBar
+        isOpen={isOpen}
+        toggleOpen={toggleOpen}
+        openWidth={openWidth}
+        closedWidth={closedWidth}
+        classes={classes}
         children={children}
       />
     </React.Fragment>

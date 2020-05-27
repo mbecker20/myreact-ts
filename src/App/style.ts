@@ -56,6 +56,10 @@ const useStyles = createUseStyles({
     width: '100%',
     height: '100%',
   },
+
+  NavButton: {
+    
+  }
 })
 
 export default useStyles;
