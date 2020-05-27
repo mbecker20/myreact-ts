@@ -2,18 +2,19 @@ import React, { useState } from 'react'
 import NavBar from './NavBar/main'
 import SideBarButton from './NavBar/SideBarButton'
 import { TilePuzzle, ChessGame } from '../components/all'
-import { useSpring, animated } from 'react-spring'
 import { Router, navigate } from '@reach/router'
 import useStyles from './style'
 import colors from '../appColors'
 import Homepage from './Homepage'
 
+interface ContentStyle {
+  width: string,
+  left: number,
+}
+
 // set open / close menu size (in pixels)
 const closedWidth = 70
 const openWidth = 230
-
-// create an animated router component to use to show content
-const AnimatedRouter = animated(Router)
 
 // create a context to be passed 
 
@@ -22,10 +23,10 @@ function App(): JSX.Element {
 
   const classes = useStyles({ colors: colors})
 
-  const contentSpring = useSpring({ 
-    width: open ? `calc(100vw - ${openWidth}px)` : `calc(100vw - ${closedWidth}px)`,
-    left: open ? openWidth : closedWidth,
-  })
+  const contentStyle = {
+    width: `calc(100vw - ${closedWidth}px)`,
+    left: closedWidth
+  }
 
   function toggleOpen() {
     toggle(!open)
@@ -71,11 +72,11 @@ function App(): JSX.Element {
           }}
         />
       </NavBar>
-      <AnimatedRouter className={classes.AppContent} style={contentSpring}>
+      <Router className={classes.AppContent} style={contentStyle}>
         <Homepage path='/' />
         <TilePuzzle path='/tilepuzzle' />
         <ChessGame path='/chess' />
-      </AnimatedRouter>
+      </Router>
     </div>
   )
 }

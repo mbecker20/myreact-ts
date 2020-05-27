@@ -22,6 +22,7 @@ const useStyles = createUseStyles({
     top: '0px',
     left: '0px',
     userSelect: 'none',
+    zIndex: '100'
   },
 
   SideBar: {
@@ -38,6 +39,7 @@ const useStyles = createUseStyles({
     top: '80px',
     left: '0px',
     userSelect: 'none',
+    zIndex: '99'
   },
   
   AppContent: {
@@ -56,10 +58,6 @@ const useStyles = createUseStyles({
     width: '100%',
     height: '100%',
   },
-
-  NavButton: {
-    
-  }
 })
 
 export default useStyles;
