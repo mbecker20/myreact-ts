@@ -1,8 +1,7 @@
 import { makeGrid } from '../../helpers/vecFuncs'
-import { ChessBoard } from './types'
+import { ChessBoard, Piece, BoardPos, BoardGrid } from './types'
 
-function makeBoardGrid(): string[][] {
-  // black rook 
+function makeBoardGrid(): BoardGrid {
   return makeGrid(8, 8, (i, j) => {
     if (i === 0) { // black back rank
       if ( j === 0 || j === 7) { // black rooks
@@ -38,11 +37,40 @@ function makeBoardGrid(): string[][] {
   })
 }
 
+function makePiece(ID: string, position: BoardPos): Piece {
+  return {
+    ID: ID,
+    position: position,
+    isAlive: true,
+  }
+}
+
+function makePieces(isWhite: boolean): Piece[] {
+  const backRank = isWhite ? 7 : 0
+  const pawnRank = isWhite ? 6 : 1
+  let pieces = [
+    makePiece('K', [backRank, 4]),
+    makePiece('Q', [backRank, 3]),
+    makePiece('R0', [backRank, 0]),
+    makePiece('R7', [backRank, 7]),
+    makePiece('N1', [backRank, 1]),
+    makePiece('N6', [backRank, 6]),
+    makePiece('B2', [backRank, 2]),
+    makePiece('R5', [backRank, 6]),
+  ]
+  for(var i = 0; i < 8; i++) {
+    pieces.push(makePiece('P'+i, [pawnRank, i]))
+  }
+  return pieces
+}
+
 export function makeChessBoard(): ChessBoard {
   return {
     boardGrid: makeBoardGrid(),
     moveList: [],
-    whitePieces: [],
-    blackPieces: [],
+    aliveWhitePieces: makePieces(true),
+    aliveBlackPieces: makePieces(false),
+    deadWhitePieces: [],
+    deadBlackPieces: [],
   }
 }

@@ -1,10 +1,15 @@
-type BoardPos = [number, number]
+export type BoardPos = [number, number]
+
+export type BoardGrid = string[][]
 
 export interface Piece {
+  ID: string,
   position: BoardPos,
+  isAlive: boolean,
 }
 
 export interface Move {
+  isWhiteMove: boolean,
   piece: Piece,
   from: BoardPos,
   to: BoardPos,
@@ -14,6 +19,8 @@ export interface Move {
 export interface ChessBoard {
   boardGrid: string[][],
   moveList: Move[],
-  whitePieces: Piece[],
-  blackPieces: Piece[]
+  aliveWhitePieces: Piece[],
+  aliveBlackPieces: Piece[],
+  deadWhitePieces: Piece[],
+  deadBlackPieces: Piece[],
 }
