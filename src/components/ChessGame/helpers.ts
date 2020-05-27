@@ -1,15 +1,17 @@
 import { makeGrid } from '../../helpers/vecFuncs'
 import { ChessBoard, Piece, BoardPos, BoardGrid } from './types'
 
+const ranks = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
+
 function makeBoardGrid(): BoardGrid {
   return makeGrid(8, 8, (i, j) => {
     if (i === 0) { // black back rank
       if ( j === 0 || j === 7) { // black rooks
-        return 'BR' + j
+        return 'BR' + ranks[j]
       } else if ( j === 1 || j === 6 ) { // black knights
-        return 'BN' + j
+        return 'BN' + ranks[j]
       } else if ( j === 2 || j === 5 ) { // black bishops
-        return 'BB' + j
+        return 'BB' + ranks[j]
       } else if ( j === 3 ) { // black queen
         return 'BQ'
       } else if ( j === 4 ) { // black king
@@ -17,20 +19,20 @@ function makeBoardGrid(): BoardGrid {
       }
     } else if ( i === 7) { // white back rank
       if ( j === 0 || j === 7) { // black rooks
-        return 'WR' + j
+        return 'WR' + ranks[j]
       } else if ( j === 1 || j === 6 ) { // black knights
-        return 'WN' + j
+        return 'WN' + ranks[j]
       } else if ( j === 2 || j === 5 ) { // black bishops
-        return 'WB' + j
+        return 'WB' + ranks[j]
       } else if ( j === 3 ) { // black queen
         return 'WQ'
       } else if ( j === 4 ) { // black king
         return 'WK'
       }
-    } else if ( i === 2 ) { // black 2nd rank (pawns)
-      return 'BP' + j
+    } else if ( i === 1 ) { // black 2nd rank (pawns)
+      return 'BP' + ranks[j]
     } else if ( i === 6 ) { // white 2nd rank
-      return 'WP' + j
+      return 'WP' + ranks[j]
     } else { // unoccupied
       return 'E'
     }

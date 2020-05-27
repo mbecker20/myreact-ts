@@ -21,7 +21,7 @@ function Button({ style, onClick, children }: Props) {
   const buttonSpring = useSpring({
     boxShadow: pressed ? downShadow : upShadow,
     fontSize: pressed ? downFont : upFont,
-    transform: pressed ? 'translate(-50%, -50%) scale(0.95)' : 'translate(-50%, -50%) scale(1)'
+    transform: pressed ? 'scale(0.95)' : 'scale(1)'
   })
   return (
     <animated.div 

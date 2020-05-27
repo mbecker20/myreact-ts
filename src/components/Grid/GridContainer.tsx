@@ -1,10 +1,6 @@
 import React from 'react'
 import useStyles from './style'
-
-export interface ContainerProps {
-  children?: any,
-  style?: object
-}
+import { ContainerProps } from './types'
 
 function GridContainer({ children, style }: ContainerProps) {
   // everything done in percentages

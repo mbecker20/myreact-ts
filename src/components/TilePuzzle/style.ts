@@ -21,7 +21,6 @@ const useStyles = createUseStyles({
     height: '60vmin',
     borderRadius: '25px',
     boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
-    transform: 'translate(-50%, -50%)',
   },
 
   Tile: {
@@ -34,7 +33,6 @@ const useStyles = createUseStyles({
     fontSize: 'calc(10px + 2vmin)',
     borderRadius: '10px',
     position: 'absolute',
-    transform: 'translate(-50%, -50%)',
     boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
     '&:hover': {
       cursor: 'default',
@@ -58,7 +56,6 @@ const useStyles = createUseStyles({
       cursor: 'default',
     },
     userSelect: 'none',
-    transform: 'translate(-50%, -50%)',
   },
 })
 

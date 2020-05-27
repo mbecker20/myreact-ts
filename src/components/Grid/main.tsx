@@ -1,7 +1,8 @@
 import React from 'react'
-import GridContainer, { ContainerProps } from './GridContainer'
+import GridContainer from './GridContainer'
 import GridItem from './GridItem'
 import { makeGrid } from '../../helpers/vecFuncs'
+import { GIProps, LayoutGrid } from './types'
 
 function createGridArray(padding: number, numRows: number, numCols: number): string[][] {
   const stepLeft = (100 - 2*padding) / numCols
@@ -13,18 +14,6 @@ function createGridArray(padding: number, numRows: number, numCols: number): str
   })
 }
 
-interface GIProps {
-  gridPos: [number, number],
-  style?: object,
-  children?: any
-}
-
-interface LayoutGrid {
-  grid: string[][],
-  Container: (props: ContainerProps) => JSX.Element,
-  Item: (props: GIProps) => JSX.Element,
-}
-
 function makeLayoutGrid(padding: number, numRows: number, numCols: number) {
   const gridArray = createGridArray(padding, numRows, numCols)
   function Item({ gridPos, style, children }: GIProps) {
@@ -32,10 +21,16 @@ function makeLayoutGrid(padding: number, numRows: number, numCols: number) {
       <GridItem gridPos={gridPos} grid={gridArray} style={style} children={children}/>
     )
   }
+  function StaticItem({ gridPos, style, children}: GIProps) {
+    return (
+      <GridItem gridPos={gridPos} grid={gridArray} style={style} children={children}/>
+    )
+  }
   const Grid: LayoutGrid = {
     grid: gridArray,
     Container: GridContainer,
-    Item: Item
+    Item: Item,
+    StaticItem: StaticItem,
   }
 
   return Grid

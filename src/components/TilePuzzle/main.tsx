@@ -55,7 +55,7 @@ function TilePuzzle(props: RouteComponentProps) {
 
   const solvedSpring = useSpring({
     opacity: solved ? 1 : 0,
-    transform: solved ? 'translate(-50%, -50%) scale(1)' : 'translate(-50%, -50%) scale(0)'
+    transform: solved ? 'scale(1)' : 'scale(0)'
   })
   
   function innerShuffle() {

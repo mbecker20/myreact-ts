@@ -9,10 +9,11 @@ const useStyles = createUseStyles({
   },
 
   Item: {
-    display: 'inline-block',
+    display: 'flex',
     position: 'absolute',
     alignItems: 'center',
     justifyContent: 'center',
+    transform: 'translate(-50%, -50%)',
   },
 })
 
