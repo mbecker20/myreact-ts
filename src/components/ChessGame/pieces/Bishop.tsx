@@ -4,7 +4,7 @@ import { gridPieceStyle, whitePieceStyle, blackPieceStyle} from './pieceStyle';
 import bishopIcon from './icons/bishop.svg'
 import useStyles from './pieceJSS';
 
-function Bishop({ grid, gridPos, isWhite}: PieceComponentProps) {
+function Bishop({ grid, gridPos, isWhite, onClick }: PieceComponentProps) {
   const classes = useStyles()
   return (
     <grid.Item gridPos={gridPos} style={gridPieceStyle}>
@@ -13,6 +13,7 @@ function Bishop({ grid, gridPos, isWhite}: PieceComponentProps) {
         src={bishopIcon}
         style={isWhite ? whitePieceStyle : blackPieceStyle}
         alt='bishop icon'
+        onClick={onClick}
       />
     </grid.Item>
   );

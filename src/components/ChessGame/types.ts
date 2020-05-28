@@ -11,6 +11,7 @@ export interface Piece {
   position: BoardPos,
   isAlive: boolean,
   Component: (props: any) => JSX.Element,
+  onClick: () => void,
 }
 
 export interface Move {
@@ -32,6 +33,7 @@ export interface PieceComponentProps {
   grid: LayoutGrid,
   isWhite: boolean,
   gridPos: [number, number],
+  onClick: () => void,
 }
 
 export interface GridPieceStyle {

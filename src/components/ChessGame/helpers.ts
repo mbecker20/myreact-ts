@@ -57,7 +57,8 @@ function makePiece(ID: PieceID, position: BoardPos): Piece {
     ID: ID,
     position: position,
     isAlive: true,
-    Component: component
+    Component: component,
+    onClick: () => console.log('pressed')
   }
 }
 

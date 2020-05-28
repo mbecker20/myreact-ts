@@ -4,7 +4,7 @@ import { gridPieceStyle, whitePieceStyle, blackPieceStyle} from './pieceStyle';
 import rookIcon from './icons/rook.svg'
 import useStyles from './pieceJSS';
 
-function Rook({ grid, gridPos, isWhite}: PieceComponentProps) {
+function Rook({ grid, gridPos, isWhite, onClick }: PieceComponentProps) {
   const classes = useStyles()
   return (
     <grid.Item gridPos={gridPos} style={gridPieceStyle}>
@@ -13,6 +13,7 @@ function Rook({ grid, gridPos, isWhite}: PieceComponentProps) {
         src={rookIcon}
         style={isWhite ? whitePieceStyle : blackPieceStyle}
         alt='rook icon'
+        onClick={onClick}
       />
     </grid.Item>
   );

@@ -4,7 +4,7 @@ import { gridPieceStyle, whitePieceStyle, blackPieceStyle} from './pieceStyle';
 import pawnIcon from './icons/pawn.svg'
 import useStyles from './pieceJSS';
 
-function Pawn({ grid, gridPos, isWhite}: PieceComponentProps) {
+function Pawn({ grid, gridPos, isWhite, onClick }: PieceComponentProps) {
   const classes = useStyles()
   return (
     <grid.Item gridPos={gridPos} style={gridPieceStyle}>
@@ -13,6 +13,7 @@ function Pawn({ grid, gridPos, isWhite}: PieceComponentProps) {
         src={pawnIcon}
         style={isWhite ? whitePieceStyle : blackPieceStyle}
         alt='rook icon'
+        onClick={onClick}
       />
     </grid.Item>
   );

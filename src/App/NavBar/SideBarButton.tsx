@@ -48,8 +48,8 @@ function SideBarButton({ isOpen, openWidth, closedWidth, openText, closedText, o
 	const baseTextStyleCopy = Object.assign({}, baseTextStyle)
 	return (
 		<Button style={Object.assign(buttonSpring, Object.assign(baseStyleCopy, style))} onClick={onClick}>
-			<animated.text style={Object.assign(closedTextSpring, baseTextStyleCopy)}>{closedText}</animated.text>
-			<animated.text style={Object.assign(openTextSpring, baseTextStyleCopy)}>{openText}</animated.text>
+			<animated.div style={Object.assign(closedTextSpring, baseTextStyleCopy)}>{closedText}</animated.div>
+			<animated.div style={Object.assign(openTextSpring, baseTextStyleCopy)}>{openText}</animated.div>
 		</Button>
 	)
 }

@@ -26,7 +26,7 @@ function Board({ chessBoard }: BoardProps) {
       {chessBoard.boardGrid.map((row, i) => {
         return row.map((pieceID, j) => {
           return (
-            <BoardTile grid={grid} gridPos={[i,j]}/>
+            <BoardTile key={i*8 + j} grid={grid} gridPos={[i,j]}/>
           )
         })
       }).flat()}

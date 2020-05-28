@@ -4,7 +4,7 @@ import { gridPieceStyle, whitePieceStyle, blackPieceStyle} from './pieceStyle';
 import queenIcon from './icons/queen.svg'
 import useStyles from './pieceJSS';
 
-function Queen({ grid, gridPos, isWhite}: PieceComponentProps) {
+function Queen({ grid, gridPos, isWhite, onClick }: PieceComponentProps) {
   const classes = useStyles()
   return (
     <grid.Item gridPos={gridPos} style={gridPieceStyle}>
@@ -13,6 +13,7 @@ function Queen({ grid, gridPos, isWhite}: PieceComponentProps) {
         src={queenIcon}
         style={isWhite ? whitePieceStyle : blackPieceStyle}
         alt='queen icon'
+        onClick={onClick}
       />
     </grid.Item>
   );
