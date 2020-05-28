@@ -26,7 +26,7 @@ const grid = makeLayoutGrid(0, 8, 8)
 function Board({ chessBoard }: BoardProps) {
   const [numClicks, setNumClicks] = useState(0)
   const springStyle = useSpring({
-    transform: chessBoard.isWhitesTurn ? 'scale(1)' : 'scale(-1)',
+    transform: chessBoard.isWhitesTurn ? 'rotate(0deg)' : 'rotate(180deg)',
     config: {
       tension: 80,
       mass: 2,
