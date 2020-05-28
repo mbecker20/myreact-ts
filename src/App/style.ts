@@ -52,6 +52,7 @@ const useStyles = createUseStyles({
     color: 'white',
     position: 'absolute',
     top: '80px',
+    overflow: 'hidden',
   },
 
   Router: {

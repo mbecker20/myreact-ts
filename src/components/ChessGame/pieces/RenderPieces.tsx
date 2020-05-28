@@ -12,7 +12,7 @@ export function renderWhitePieces(chessBoard: ChessBoard, grid: LayoutGrid, stat
         setState(state + 1)
       }
       return (
-        <piece.Component key={ID} grid={grid} gridPos={piece.position} isWhite={true} onClick={onClick}/>
+        <piece.Component key={ID} grid={grid} gridPos={piece.position} isWhite={true} onClick={onClick} isWhitesTurn={chessBoard.isWhitesTurn}/>
       )
     })
   )
@@ -28,7 +28,7 @@ export function renderBlackPieces(chessBoard: ChessBoard, grid: LayoutGrid, stat
         setState(state + 1)
       }
       return (
-        <piece.Component key={ID} grid={grid} gridPos={piece.position} isWhite={false} onClick={onClick}/>
+        <piece.Component key={ID} grid={grid} gridPos={piece.position} isWhite={false} onClick={onClick} isWhitesTurn={chessBoard.isWhitesTurn}/>
       )
     })
   )

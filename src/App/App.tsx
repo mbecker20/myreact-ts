@@ -16,17 +16,15 @@ interface ContentStyle {
 const closedWidth = 70
 const openWidth = 230
 
-// create a context to be passed 
+const contentStyle = {
+  width: `calc(100vw - ${closedWidth}px)`,
+  left: closedWidth
+}
 
 function App(): JSX.Element {
   const [open, toggle] = useState(false);
 
   const classes = useStyles({ colors: colors})
-
-  const contentStyle = {
-    width: `calc(100vw - ${closedWidth}px)`,
-    left: closedWidth
-  }
 
   function toggleOpen() {
     toggle(!open)

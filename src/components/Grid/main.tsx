@@ -1,5 +1,6 @@
 import React from 'react'
 import GridContainer from './GridContainer'
+import GridStaticContainer from './GridStaticContainer'
 import GridItem from './GridItem'
 import GridStaticItem from './GridStaticItem'
 import { makeGrid } from '../../helpers/vecFuncs'
@@ -30,6 +31,7 @@ function makeLayoutGrid(padding: number, numRows: number, numCols: number) {
   const Grid: LayoutGrid = {
     grid: gridArray,
     Container: GridContainer,
+    StaticContainer: GridStaticContainer,
     Item: Item,
     StaticItem: StaticItem,
   }

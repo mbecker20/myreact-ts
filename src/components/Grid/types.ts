@@ -19,6 +19,7 @@ export interface GIProps {
 export interface LayoutGrid {
   grid: string[][],
   Container: (props: ContainerProps) => JSX.Element,
+  StaticContainer: (props: ContainerProps) => JSX.Element,
   Item: (props: GIProps) => JSX.Element,
   StaticItem: (props: GIProps) => JSX.Element,
 }

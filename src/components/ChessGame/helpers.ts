@@ -373,6 +373,8 @@ function showPossibleKnightMoves(chessBoard: ChessBoard, boardPos: BoardPos, isW
 }
 
 function showPossibleMoves(chessBoard: ChessBoard, ID: string, isWhite: boolean) {
+  chessBoard.highlightedSquares = []
+  chessBoard.specialHighlightedSquares = []
   if (isWhite === chessBoard.isWhitesTurn) {
     const piecesKey = isWhite ? 'aliveWhitePieces' : 'aliveBlackPieces'
     const boardPos = chessBoard[piecesKey][ID].position
@@ -452,11 +454,13 @@ function makePieces(chessBoard: ChessBoard, isWhite: boolean) {
   pieces[team + 'K'].shortCastle = function() {
     movePiece(chessBoard, pieces[team + 'K'], [backRank, 6], isWhite)
     movePiece(chessBoard, pieces[team + 'R7'], [backRank, 5], isWhite)
+    chessBoard.isWhitesTurn = !chessBoard.isWhitesTurn
     chessBoard.specialHighlightedSquares = []
   }
   pieces[team + 'K'].longCastle = function() {
     movePiece(chessBoard, pieces[team + 'K'], [backRank, 2], isWhite)
     movePiece(chessBoard, pieces[team + 'R0'], [backRank, 3], isWhite)
+    chessBoard.isWhitesTurn = !chessBoard.isWhitesTurn
     chessBoard.specialHighlightedSquares = []
   }
   return pieces as Team

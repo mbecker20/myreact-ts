@@ -63,6 +63,7 @@ export interface PieceComponentProps {
   isWhite: boolean,
   gridPos: [number, number],
   onClick: () => void,
+  isWhitesTurn?: boolean,
 }
 
 export interface GridPieceStyle {

@@ -5,6 +5,7 @@ import BoardTile from './BoardTile'
 import { renderWhitePieces, renderBlackPieces } from './pieces/RenderPieces'
 import HighlightedSquare from './HighlightedSquare'
 import { movePiece } from './helpers'
+import { useSpring } from 'react-spring'
 
 interface BoardProps {
   chessBoard: ChessBoard
@@ -24,8 +25,16 @@ const grid = makeLayoutGrid(0, 8, 8)
 
 function Board({ chessBoard }: BoardProps) {
   const [numClicks, setNumClicks] = useState(0)
+  const springStyle = useSpring({
+    transform: chessBoard.isWhitesTurn ? 'scale(1)' : 'scale(-1)',
+    config: {
+      tension: 80,
+      mass: 2,
+      friction: 25
+    }
+  })
   return (
-    <grid.Container style={boardContainerStyle}>
+    <grid.Container style={Object.assign(springStyle, boardContainerStyle)}>
       {chessBoard.boardGrid.map((row, i) => {
         return row.map((pieceID, j) => {
           return (

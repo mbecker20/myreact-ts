@@ -1,19 +1,24 @@
 import React from 'react';
-import { PieceComponentProps } from '../types'
+import { PieceComponentProps, SVGPieceStyle } from '../types'
 import { gridPieceStyle, whitePieceStyle, blackPieceStyle} from './pieceStyle';
 import bishopIcon from './icons/bishop.svg'
 import useStyles from './pieceJSS';
+import { useSpring } from 'react-spring'
 
-function Bishop({ grid, gridPos, isWhite, onClick }: PieceComponentProps) {
+const bishopWhitePieceStyle: SVGPieceStyle = Object.assign(Object.assign({}, whitePieceStyle), { transform: 'scaleX(1.3)' })
+const bishopBlackPieceStyle: SVGPieceStyle = Object.assign(Object.assign({}, blackPieceStyle), { transform: 'scaleX(1.3)' })
+
+function Bishop({ grid, gridPos, isWhite, onClick, isWhitesTurn }: PieceComponentProps) {
   const classes = useStyles()
-  const baseStyle = isWhite ? whitePieceStyle : blackPieceStyle
-  const style = Object.assign(Object.assign({}, baseStyle), { transform: 'scaleX(1.3)' })
+  const baseStyle = isWhite ? bishopWhitePieceStyle : bishopBlackPieceStyle
+  const springStyle = useSpring({ transform: isWhitesTurn ? 'translate(-50%, -50%) rotate(0deg)' : 'translate(-50%, -50%) rotate(180deg)' })
+  const gridPieceSpringStyle = Object.assign(Object.assign({}, gridPieceStyle), springStyle)
   return (
-    <grid.Item gridPos={gridPos} style={gridPieceStyle}>
+    <grid.Item gridPos={gridPos} style={gridPieceSpringStyle}>
       <img
         className={classes.Piece}
         src={bishopIcon}
-        style={style}
+        style={baseStyle}
         alt='bishop icon'
         onClick={onClick}
       />
