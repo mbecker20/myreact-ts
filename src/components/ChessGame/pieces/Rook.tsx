@@ -8,8 +8,15 @@ import { useSpring } from 'react-spring'
 
 function Rook({ grid, gridPos, isWhite, onClick, isWhitesTurn }: PieceComponentProps) {
   const classes = useStyles()
-  const imgStyle = { transform: 'scaleX(1.1)' }
-  const springStyle = useSpring({ transform: isWhitesTurn ? 'translate(-50%, -50%) rotate(0deg)' : 'translate(-50%, -50%) rotate(180deg)' })
+  const imgStyle = { transform: 'scaleX(1.1) scaleY(0.98)' }
+  const springStyle = useSpring({
+    transform: isWhitesTurn ? 'translate(-50%, -50%) rotate(0deg)' : 'translate(-50%, -50%) rotate(180deg)',
+    config: {
+      tension: 80,
+      mass: 2,
+      friction: 25
+    }
+  })
   const gridPieceSpringStyle = Object.assign(Object.assign({}, gridPieceStyle), springStyle)
   return (
     <grid.Item gridPos={gridPos} style={gridPieceSpringStyle}>
