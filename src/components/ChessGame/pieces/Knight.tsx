@@ -1,11 +1,12 @@
-import React from 'react';
+import React from 'react'
+import { PieceComponentProps } from '../types'
 
-function Knight() {
+function Knight({ grid, gridPos, isWhite}: PieceComponentProps) {
   return (
-    <div>
-      
-    </div>
+    <grid.Item gridPos={gridPos}>
+      N
+    </grid.Item>
   );
 }
 
-export default Knight;
+export default Knight

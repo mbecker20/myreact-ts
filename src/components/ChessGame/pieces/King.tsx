@@ -1,10 +1,11 @@
 import React from 'react';
+import { PieceComponentProps } from '../types'
 
-function King() {
+function King({ grid, gridPos, isWhite}: PieceComponentProps) {
   return (
-    <div>
-      
-    </div>
+    <grid.Item gridPos={gridPos}>
+      K
+    </grid.Item>
   );
 }
 

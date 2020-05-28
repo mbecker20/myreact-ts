@@ -1,10 +1,10 @@
 import React from 'react'
 import makeLayoutGrid from '../Grid/main'
-import { BoardGrid } from './types'
+import { ChessBoard } from './types'
 import BoardTile from './BoardTile'
 
 interface BoardProps {
-  boardGrid: BoardGrid
+  chessBoard: ChessBoard
 }
 
 interface BoardContainerStyle {
@@ -19,16 +19,17 @@ const boardContainerStyle: BoardContainerStyle = {
 
 const grid = makeLayoutGrid(0, 8, 8)
 
-function Board({ boardGrid }: BoardProps) {
+function Board({ chessBoard }: BoardProps) {
   return (
     <grid.Container style={boardContainerStyle}>
-      {boardGrid.map((row, i) => {
+      {chessBoard.boardGrid.map((row, i) => {
         return row.map((pieceID, j) => {
           return (
-            <BoardTile grid={grid} gridPos={[i,j]} pieceID={pieceID}/>
+            <BoardTile grid={grid} gridPos={[i,j]}/>
           )
         })
       }).flat()}
+      
     </grid.Container>
   )
 }

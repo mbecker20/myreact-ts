@@ -1,5 +1,6 @@
 import { makeGrid } from '../../helpers/vecFuncs'
-import { ChessBoard, Piece, BoardPos, BoardGrid } from './types'
+import { ChessBoard, Piece, PieceID, BoardPos, BoardGrid } from './types'
+import * as pieces from './pieces/all'
 
 const ranks = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
 
@@ -39,11 +40,24 @@ function makeBoardGrid(): BoardGrid {
   })
 }
 
-function makePiece(ID: string, position: BoardPos): Piece {
+function makePiece(ID: PieceID, position: BoardPos): Piece {
+  let component = pieces.Pawn
+  if (ID[0] === 'K') {
+    component = pieces.King
+  } else if (ID[0] === 'Q') {
+    component = pieces.Queen
+  } else if (ID[0] === 'R') {
+    component = pieces.Rook
+  } else if (ID[0] === 'B') {
+    component = pieces.Bishop
+  } else if (ID[0] === 'N') {
+    component = pieces.Knight
+  }
   return {
     ID: ID,
     position: position,
     isAlive: true,
+    Component: component
   }
 }
 
@@ -70,9 +84,7 @@ export function makeChessBoard(): ChessBoard {
   return {
     boardGrid: makeBoardGrid(),
     moveList: [],
-    aliveWhitePieces: makePieces(true),
-    aliveBlackPieces: makePieces(false),
-    deadWhitePieces: [],
-    deadBlackPieces: [],
+    whitePieces: makePieces(true),
+    blackPieces: makePieces(false),
   }
 }

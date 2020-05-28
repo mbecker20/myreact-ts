@@ -1,10 +1,11 @@
 import React from 'react';
+import { PieceComponentProps } from '../types'
 
-function Queen() {
+function Queen({ grid, gridPos, isWhite}: PieceComponentProps) {
   return (
-    <div>
-      
-    </div>
+    <grid.Item gridPos={gridPos}>
+      Q
+    </grid.Item>
   );
 }
 

@@ -1,10 +1,11 @@
 import React from 'react';
+import { PieceComponentProps } from '../types'
 
-function Bishop() {
+function Bishop({ grid, gridPos, isWhite}: PieceComponentProps) {
   return (
-    <div>
-      
-    </div>
+    <grid.Item gridPos={gridPos}>
+      B
+    </grid.Item>
   );
 }
 

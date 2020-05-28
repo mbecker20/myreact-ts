@@ -6,7 +6,6 @@ import { LayoutGrid } from '../Grid/types'
 interface BoardTileProps {
   grid: LayoutGrid,
   gridPos: BoardPos,
-  pieceID: string
 }
 
 interface TileStyle {
@@ -27,15 +26,13 @@ const blackTileStyle: TileStyle = {
   height: '10vmin',
 }
 
-function BoardTile({ grid, gridPos, pieceID }: BoardTileProps) {
+function BoardTile({ grid, gridPos }: BoardTileProps) {
   const isWhite = ((gridPos[0] + gridPos[1]) % 2 === 0)
   return (
     <grid.StaticItem 
       gridPos={gridPos}
       style={isWhite ? whiteTileStyle : blackTileStyle}
-    >
-      {''}
-    </grid.StaticItem>
+    />
   )
 }
 

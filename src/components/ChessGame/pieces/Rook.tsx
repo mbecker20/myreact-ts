@@ -1,11 +1,12 @@
-import React from 'react';
+import React from 'react'
+import { PieceComponentProps } from '../types'
 
-function Rook() {
+function Rook({ grid, gridPos, isWhite}: PieceComponentProps) {
   return (
-    <div>
-      
-    </div>
+    <grid.Item gridPos={gridPos}>
+      R
+    </grid.Item>
   );
 }
 
-export default Rook;
+export default Rook

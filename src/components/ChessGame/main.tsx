@@ -11,7 +11,7 @@ function ChessGame(props: RouteComponentProps) {
   const classes = useStyles({ colors: colors})
   return (
     <div className={classes.Bounder}>
-      <Board boardGrid={chessBoard.boardGrid}/>
+      <Board chessBoard={chessBoard}/>
     </div>
   )
 }
