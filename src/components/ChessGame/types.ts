@@ -9,9 +9,9 @@ export type PieceID = string
 export interface Piece {
   ID: string,
   position: BoardPos,
-  isAlive: boolean,
   Component: (props: any) => JSX.Element,
   onClick: () => void,
+  isWhite: boolean,
 }
 
 export interface Move {
@@ -22,13 +22,20 @@ export interface Move {
   taken?: Piece,
 }
 
+export interface Team {
+  [pieceID: string]: Piece
+}
+
 export interface ChessBoard {
   boardGrid: string[][],
   moveList: Move[],
-  whitePieces: Piece[],
-  blackPieces: Piece[],
+  aliveWhitePieces: Team,
+  deadWhitePieces: Team,
+  aliveBlackPieces: Team,
+  deadBlackPieces: Team,
   highlightedSquares: BoardPos[],
   highlightingPiece: Piece | undefined,
+  [index: string]: any,
 }
 
 export interface PieceComponentProps {

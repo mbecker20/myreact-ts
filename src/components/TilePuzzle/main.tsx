@@ -10,7 +10,7 @@ import { RouteComponentProps } from '@reach/router'
 const layoutGrid = makeLayoutGrid(5, 4, 4)
 
 let tileGrid = makeTileGrid()
-shuffleTiles(tileGrid, 150)
+//shuffleTiles(tileGrid, 150)
 
 interface PG {
   classes: object,
@@ -45,7 +45,7 @@ function PuzzleGrid({ classes, setSolved }: PG) {
   )
 }
 
-const boundingGrid = makeLayoutGrid(0, 7, 1)
+const boundingGrid = makeLayoutGrid(0, 40, 1)
 let permaSolved = false
 
 function TilePuzzle(props: RouteComponentProps) {
@@ -68,7 +68,7 @@ function TilePuzzle(props: RouteComponentProps) {
   return (
     <div className={classes.Bounder}>
       <boundingGrid.Container>
-        <boundingGrid.Item gridPos={[3,0]}>
+        <boundingGrid.Item gridPos={[20,0]}>
           <div className={classes.TilePuzzle}>
             <PuzzleGrid 
               classes={classes}
@@ -76,13 +76,13 @@ function TilePuzzle(props: RouteComponentProps) {
             />
           </div>
         </boundingGrid.Item>
-        <boundingGrid.Item gridPos={[6,0]}>
+        <boundingGrid.Item gridPos={[36,0]}>
           <TextButton text='shuffle' onClick={innerShuffle} style={{
               width: '18vmin',
               height: '8vmin',
             }}/>
         </boundingGrid.Item>
-        <boundingGrid.Item gridPos={[0,0]}>
+        <boundingGrid.Item gridPos={[1,0]}>
           <animated.div className={classes.Solved} style={solvedSpring}>
             Solved!
           </animated.div>

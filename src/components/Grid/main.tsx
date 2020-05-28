@@ -1,6 +1,7 @@
 import React from 'react'
 import GridContainer from './GridContainer'
 import GridItem from './GridItem'
+import GridStaticItem from './GridStaticItem'
 import { makeGrid } from '../../helpers/vecFuncs'
 import { GIProps, LayoutGrid } from './types'
 
@@ -23,7 +24,7 @@ function makeLayoutGrid(padding: number, numRows: number, numCols: number) {
   }
   function StaticItem({ gridPos, style, children}: GIProps) {
     return (
-      <GridItem gridPos={gridPos} grid={gridArray} style={style} children={children}/>
+      <GridStaticItem gridPos={gridPos} grid={gridArray} style={style} children={children}/>
     )
   }
   const Grid: LayoutGrid = {

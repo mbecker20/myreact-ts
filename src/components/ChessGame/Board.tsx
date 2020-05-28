@@ -36,12 +36,13 @@ function Board({ chessBoard }: BoardProps) {
       {renderWhitePieces(chessBoard, grid, numClicks, setNumClicks)}
       {renderBlackPieces(chessBoard, grid, numClicks, setNumClicks)}
       {chessBoard.highlightedSquares.map((square, i) => {
+        const movingPiece = chessBoard.highlightingPiece as Piece
         function innerMovePiece() {
-          movePiece(chessBoard, chessBoard.highlightingPiece as Piece, square)
+          movePiece(chessBoard, movingPiece, square, movingPiece.isWhite)
           setNumClicks(numClicks + 1)
         }
         return (
-          <HighlightedSquare key={i} grid={grid} gridPos={square} onClick={innerMovePiece}/>
+          <HighlightedSquare key={movingPiece.ID + i} grid={grid} gridPos={square} onClick={innerMovePiece}/>
         )
       })}
     </grid.Container>
