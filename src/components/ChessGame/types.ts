@@ -33,3 +33,12 @@ export interface PieceComponentProps {
   isWhite: boolean,
   gridPos: [number, number],
 }
+
+export interface GridPieceStyle {
+  width: string,
+  height: string,
+}
+
+export interface SVGPieceStyle {
+  filter: string
+}

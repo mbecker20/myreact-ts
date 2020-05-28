@@ -60,6 +60,11 @@ const useStyles = createUseStyles({
     userSelect: 'none',
     transform: 'translate(-50%, -50%)',
   },
+
+  Piece: {
+    width: '10vmin',
+    height: '10vmin'
+  }
 })
 
 export default useStyles;

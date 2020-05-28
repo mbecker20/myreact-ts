@@ -2,6 +2,7 @@ import React from 'react'
 import makeLayoutGrid from '../Grid/main'
 import { ChessBoard } from './types'
 import BoardTile from './BoardTile'
+import { renderWhitePieces, renderBlackPieces } from './pieces/RenderPieces'
 
 interface BoardProps {
   chessBoard: ChessBoard
@@ -29,7 +30,8 @@ function Board({ chessBoard }: BoardProps) {
           )
         })
       }).flat()}
-      
+      {renderWhitePieces(chessBoard, grid)}
+      {renderBlackPieces(chessBoard, grid)}
     </grid.Container>
   )
 }

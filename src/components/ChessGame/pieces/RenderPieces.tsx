@@ -2,12 +2,7 @@ import React from 'react'
 import { ChessBoard } from '../types'
 import { LayoutGrid } from '../../Grid/types';
 
-interface Props {
-  chessBoard: ChessBoard,
-  grid: LayoutGrid
-}
-
-export function RenderWhitePieces({ chessBoard, grid }: Props) {
+export function renderWhitePieces(chessBoard: ChessBoard, grid: LayoutGrid) {
   return (
     chessBoard.whitePieces.map((piece) => {
       return (
@@ -17,11 +12,11 @@ export function RenderWhitePieces({ chessBoard, grid }: Props) {
   );
 }
 
-export function RenderBlackPieces({ chessBoard, grid }: Props) {
+export function renderBlackPieces(chessBoard: ChessBoard, grid: LayoutGrid) {
   return (
-    chessBoard.whitePieces.map((piece) => {
+    chessBoard.blackPieces.map((piece) => {
       return (
-        <piece.Component grid={grid} gridPos={piece.position} isWhite={true}/>
+        <piece.Component grid={grid} gridPos={piece.position} isWhite={false}/>
       )
     })
   );

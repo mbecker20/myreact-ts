@@ -72,7 +72,7 @@ function makePieces(isWhite: boolean): Piece[] {
     makePiece('N1', [backRank, 1]),
     makePiece('N6', [backRank, 6]),
     makePiece('B2', [backRank, 2]),
-    makePiece('R5', [backRank, 6]),
+    makePiece('B5', [backRank, 5]),
   ]
   for(var i = 0; i < 8; i++) {
     pieces.push(makePiece('P'+i, [pawnRank, i]))
