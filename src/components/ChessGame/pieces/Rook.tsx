@@ -6,12 +6,14 @@ import useStyles from './pieceJSS';
 
 function Rook({ grid, gridPos, isWhite, onClick }: PieceComponentProps) {
   const classes = useStyles()
+  const baseStyle = isWhite ? whitePieceStyle : blackPieceStyle
+  const style = Object.assign(Object.assign({}, baseStyle), { transform: 'scaleX(1.1)' })
   return (
     <grid.Item gridPos={gridPos} style={gridPieceStyle}>
       <img
         className={classes.Piece}
         src={rookIcon}
-        style={isWhite ? whitePieceStyle : blackPieceStyle}
+        style={style}
         alt='rook icon'
         onClick={onClick}
       />

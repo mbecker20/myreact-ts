@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import makeLayoutGrid from '../Grid/main'
-import { ChessBoard, Piece } from './types'
+import { ChessBoard, Piece, SpecialHighlightedSquare } from './types'
 import BoardTile from './BoardTile'
 import { renderWhitePieces, renderBlackPieces } from './pieces/RenderPieces'
 import HighlightedSquare from './HighlightedSquare'
@@ -43,6 +43,16 @@ function Board({ chessBoard }: BoardProps) {
         }
         return (
           <HighlightedSquare key={movingPiece.ID + i} grid={grid} gridPos={square} onClick={innerMovePiece}/>
+        )
+      })}
+      {chessBoard.specialHighlightedSquares.map((square: SpecialHighlightedSquare, i: number) => {
+        const movingPiece = chessBoard.highlightingPiece as Piece
+        function innerOnClick() {
+          square.onClick()
+          setNumClicks(numClicks + 1)
+        }
+        return (
+          <HighlightedSquare key={movingPiece.ID + i} grid={grid} gridPos={square.boardPos} onClick={innerOnClick}/>
         )
       })}
     </grid.Container>

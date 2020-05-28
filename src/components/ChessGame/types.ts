@@ -14,6 +14,19 @@ export interface Piece {
   isWhite: boolean,
 }
 
+export interface PawnPiece extends Piece {
+  canEnPassantPos: boolean,
+  canEnPassantNeg: boolean,
+  enPassant: (target: BoardPos) => void
+}
+
+export interface KingPiece extends Piece {
+  canCastleShort: boolean,
+  canCastleLong: boolean,
+  shortCastle: () => void,
+  longCastle: () => void,
+}
+
 export interface Move {
   isWhiteMove: boolean,
   piece: Piece,
@@ -23,10 +36,16 @@ export interface Move {
 }
 
 export interface Team {
-  [pieceID: string]: Piece
+  [pieceID: string]: Piece | PawnPiece | KingPiece
+}
+
+export interface SpecialHighlightedSquare {
+  boardPos: BoardPos,
+  onClick: () => void,
 }
 
 export interface ChessBoard {
+  isWhitesTurn: boolean,
   boardGrid: string[][],
   moveList: Move[],
   aliveWhitePieces: Team,
@@ -35,6 +54,7 @@ export interface ChessBoard {
   deadBlackPieces: Team,
   highlightedSquares: BoardPos[],
   highlightingPiece: Piece | undefined,
+  specialHighlightedSquares: SpecialHighlightedSquare[],
   [index: string]: any,
 }
 

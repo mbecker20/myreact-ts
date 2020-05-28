@@ -16,8 +16,8 @@ const useStyles = createUseStyles({
   },
 
   HighlightedSquare: {
-    width: '5vmin',
-    height: '5vmin',
+    width: '10vmin',
+    height: '10vmin',
   },
 })
 
