@@ -1,8 +1,10 @@
-import React from 'react'
+import React, {useState} from 'react'
 import makeLayoutGrid from '../Grid/main'
-import { ChessBoard } from './types'
+import { ChessBoard, Piece } from './types'
 import BoardTile from './BoardTile'
 import { renderWhitePieces, renderBlackPieces } from './pieces/RenderPieces'
+import HighlightedSquare from './HighlightedSquare'
+import { movePiece } from './helpers'
 
 interface BoardProps {
   chessBoard: ChessBoard
@@ -21,6 +23,7 @@ const boardContainerStyle: BoardContainerStyle = {
 const grid = makeLayoutGrid(0, 8, 8)
 
 function Board({ chessBoard }: BoardProps) {
+  const [numClicks, setNumClicks] = useState(0)
   return (
     <grid.Container style={boardContainerStyle}>
       {chessBoard.boardGrid.map((row, i) => {
@@ -30,8 +33,17 @@ function Board({ chessBoard }: BoardProps) {
           )
         })
       }).flat()}
-      {renderWhitePieces(chessBoard, grid)}
-      {renderBlackPieces(chessBoard, grid)}
+      {renderWhitePieces(chessBoard, grid, numClicks, setNumClicks)}
+      {renderBlackPieces(chessBoard, grid, numClicks, setNumClicks)}
+      {chessBoard.highlightedSquares.map((square, i) => {
+        function innerMovePiece() {
+          movePiece(chessBoard, chessBoard.highlightingPiece as Piece, square)
+          setNumClicks(numClicks + 1)
+        }
+        return (
+          <HighlightedSquare key={i} grid={grid} gridPos={square} onClick={innerMovePiece}/>
+        )
+      })}
     </grid.Container>
   )
 }

@@ -40,7 +40,69 @@ function makeBoardGrid(): BoardGrid {
   })
 }
 
-function makePiece(ID: PieceID, position: BoardPos): Piece {
+function showPossiblePawnMoves(chessBoard: ChessBoard, boardPos: BoardPos, isWhite: boolean) {
+  const step = isWhite ? -1 : 1
+  const startingRank = isWhite ? 6 : 1
+  const otherColor = isWhite ? 'B' : 'W'
+  let possibleMoves: BoardPos[] = []
+  if (chessBoard.boardGrid[boardPos[0] + step][boardPos[1]] === 'E') {
+    possibleMoves.push([boardPos[0] + step, boardPos[1]])
+  }
+  if (boardPos[1] + 1 > 7 && chessBoard.boardGrid[boardPos[0] + step][boardPos[1] + 1][0] === otherColor) {
+    possibleMoves.push([boardPos[0] + step, boardPos[1] + 1])
+  }
+  if (boardPos[1] - 1 > -1 && chessBoard.boardGrid[boardPos[0] + step][boardPos[1] - 1][0] === otherColor) {
+    possibleMoves.push([boardPos[0] + step, boardPos[1] - 1])
+  }
+  if (boardPos[0] === startingRank) { // pawn can move 2
+    if (chessBoard.boardGrid[boardPos[0] + 2*step][boardPos[1]] === 'E') {
+      possibleMoves.push([boardPos[0] + 2*step, boardPos[1]])
+    }
+  }
+  chessBoard.highlightedSquares = possibleMoves
+}
+
+function showPossibleKingMoves(chessBoard: ChessBoard, boardPos: BoardPos, isWhite: boolean) {
+  
+}
+
+function showPossibleQueenMoves(chessBoard: ChessBoard, boardPos: BoardPos, isWhite: boolean) {
+  
+}
+
+function showPossibleRookMoves(chessBoard: ChessBoard, boardPos: BoardPos, isWhite: boolean) {
+  
+}
+
+function showPossibleBishopMoves(chessBoard: ChessBoard, boardPos: BoardPos, isWhite: boolean) {
+  
+}
+
+function showPossibleKnightMoves(chessBoard: ChessBoard, boardPos: BoardPos, isWhite: boolean) {
+  
+}
+
+function showPossibleMoves(chessBoard: ChessBoard, index: number, isWhite: boolean) {
+  console.log('showing possible')
+  const piecesKey = isWhite ? 'whitePieces' : 'blackPieces'
+  const ID = chessBoard[piecesKey][index].ID
+  const boardPos = chessBoard[piecesKey][index].position
+  if (ID[0] === 'P') {
+    showPossiblePawnMoves(chessBoard, boardPos, isWhite)
+  } else if (ID[0] === 'K') {
+    showPossibleKingMoves(chessBoard, boardPos, isWhite)
+  } else if (ID[0] === 'Q') {
+    showPossibleQueenMoves(chessBoard, boardPos, isWhite)
+  } else if (ID[0] === 'R') {
+    showPossibleRookMoves(chessBoard, boardPos, isWhite)
+  } else if (ID[0] === 'B') {
+    showPossibleBishopMoves(chessBoard, boardPos, isWhite)
+  } else if (ID[0] === 'N') {
+    showPossibleKnightMoves(chessBoard, boardPos, isWhite)
+  }
+}
+
+function makePiece(chessBoard: ChessBoard, ID: PieceID, index: number, position: BoardPos, isWhite: boolean): Piece {
   let component = pieces.Pawn
   if (ID[0] === 'K') {
     component = pieces.King
@@ -58,34 +120,49 @@ function makePiece(ID: PieceID, position: BoardPos): Piece {
     position: position,
     isAlive: true,
     Component: component,
-    onClick: () => console.log('pressed')
+    onClick: () => {
+      showPossibleMoves(chessBoard, index, isWhite)
+    }
   }
 }
 
-function makePieces(isWhite: boolean): Piece[] {
+function makePieces(chessBoard: ChessBoard, isWhite: boolean): Piece[] {
   const backRank = isWhite ? 7 : 0
   const pawnRank = isWhite ? 6 : 1
   let pieces = [
-    makePiece('K', [backRank, 4]),
-    makePiece('Q', [backRank, 3]),
-    makePiece('R0', [backRank, 0]),
-    makePiece('R7', [backRank, 7]),
-    makePiece('N1', [backRank, 1]),
-    makePiece('N6', [backRank, 6]),
-    makePiece('B2', [backRank, 2]),
-    makePiece('B5', [backRank, 5]),
+    makePiece(chessBoard, 'K', 0, [backRank, 4], isWhite),
+    makePiece(chessBoard, 'Q', 1, [backRank, 3], isWhite),
+    makePiece(chessBoard, 'R0', 2, [backRank, 0], isWhite),
+    makePiece(chessBoard, 'R7', 3, [backRank, 7], isWhite),
+    makePiece(chessBoard, 'N1', 4, [backRank, 1], isWhite),
+    makePiece(chessBoard, 'N6', 5, [backRank, 6], isWhite),
+    makePiece(chessBoard, 'B2', 6, [backRank, 2], isWhite),
+    makePiece(chessBoard, 'B5', 7, [backRank, 5], isWhite),
   ]
   for(var i = 0; i < 8; i++) {
-    pieces.push(makePiece('P'+i, [pawnRank, i]))
+    pieces.push(makePiece(chessBoard, 'P'+i, 8+i, [pawnRank, i], isWhite))
   }
   return pieces
 }
 
+export function movePiece(chessBoard: ChessBoard, piece: Piece, target: BoardPos) {
+  chessBoard.boardGrid[target[0]][target[1]] = chessBoard.boardGrid[piece.position[0]][piece.position[0]]
+  chessBoard.boardGrid[piece.position[0]][piece.position[0]] = 'E'
+  piece.position = target
+  chessBoard.highlightedSquares = []
+  // need to add to move list
+}
+
 export function makeChessBoard(): ChessBoard {
-  return {
+  let chessBoard: ChessBoard = {
     boardGrid: makeBoardGrid(),
     moveList: [],
-    whitePieces: makePieces(true),
-    blackPieces: makePieces(false),
+    highlightedSquares: [],
+    whitePieces: [],
+    blackPieces: [],
+    highlightingPiece: undefined,
   }
+  chessBoard.whitePieces = makePieces(chessBoard, true)
+  chessBoard.blackPieces = makePieces(chessBoard, false)
+  return chessBoard
 }

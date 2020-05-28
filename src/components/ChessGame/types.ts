@@ -27,6 +27,8 @@ export interface ChessBoard {
   moveList: Move[],
   whitePieces: Piece[],
   blackPieces: Piece[],
+  highlightedSquares: BoardPos[],
+  highlightingPiece: Piece | undefined,
 }
 
 export interface PieceComponentProps {
