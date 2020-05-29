@@ -22,7 +22,7 @@ const contentStyle = {
 }
 
 function App(): JSX.Element {
-  const [open, toggle] = useState(false);
+  const [open, toggle] = useState(true);
 
   const classes = useStyles({ colors: colors})
 
@@ -53,7 +53,7 @@ function App(): JSX.Element {
           isOpen={open}
           openWidth={openWidth}
           closedWidth={closedWidth}
-          openText='TilePuzzle'
+          openText='Tile Puzzle'
           closedText='T'
           onClick={() => {
             navigate('/myreact-ts/tilepuzzle')
