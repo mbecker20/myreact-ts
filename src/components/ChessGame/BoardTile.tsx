@@ -1,6 +1,5 @@
 import React from 'react'
 import { BoardPos } from './types'
-import colors from '../../appColors'
 import { LayoutGrid } from '../Grid/types'
 
 interface BoardTileProps {
@@ -15,13 +14,13 @@ interface TileStyle {
 }
 
 const whiteTileStyle: TileStyle = {
-  backgroundColor: colors.primary,
+  backgroundColor: '#cc8666',
   width: '10vmin',
   height: '10vmin',
 }
 
 const blackTileStyle: TileStyle = {
-  backgroundColor: colors.secondary,
+  backgroundColor: '#82462b',
   width: '10vmin',
   height: '10vmin',
 }

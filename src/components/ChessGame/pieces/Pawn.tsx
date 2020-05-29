@@ -1,8 +1,8 @@
 import React from 'react'
 import { PieceComponentProps } from '../types'
 import { gridPieceStyle } from './pieceStyle';
-import whitePawnIcon from './icons/whitePawn.svg'
-import blackPawnIcon from './icons/blackPawn.svg'
+import whitePawnIcon from './pngIcons/whitePawn.png'
+import blackPawnIcon from './pngIcons/blackPawn.png'
 import useStyles from './pieceJSS';
 import { useSpring } from 'react-spring'
 
@@ -18,7 +18,7 @@ function Pawn({ grid, gridPos, isWhite, onClick, isWhitesTurn }: PieceComponentP
   })
   const gridPieceSpringStyle = Object.assign(Object.assign({}, gridPieceStyle), springStyle)
   const imgStyle = { 
-    transform: 'scaleX(1.2) scaleY(0.98)'
+    transform: 'scaleX(0.6) scaleY(1)'
   }
   return (
     <grid.Item gridPos={gridPos} style={gridPieceSpringStyle}>

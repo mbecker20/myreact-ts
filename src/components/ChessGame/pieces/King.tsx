@@ -1,8 +1,8 @@
 import React from 'react'
 import { PieceComponentProps } from '../types'
 import { gridPieceStyle } from './pieceStyle';
-import whiteKingIcon from './icons/whiteKing.svg'
-import blackKingIcon from './icons/blackKing.svg'
+import whiteKingIcon from './pngIcons/whiteKing.png'
+import blackKingIcon from './pngIcons/blackKing.png'
 import useStyles from './pieceJSS';
 import { useSpring } from 'react-spring'
 
@@ -18,7 +18,7 @@ function King({ grid, gridPos, isWhite, onClick, isWhitesTurn }: PieceComponentP
   })
   const gridPieceSpringStyle = Object.assign(Object.assign({}, gridPieceStyle), springStyle)
   const imgStyle = { 
-    transform: 'scaleX(1) scaleY(0.98)'
+    transform: 'scaleX(0.8) scaleY(1)'
   }
   return (
     <grid.Item gridPos={gridPos} style={gridPieceSpringStyle}>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import makeLayoutGrid from '../Grid/main'
 import { ChessBoard, Piece, SpecialHighlightedSquare } from './types'
 import BoardTile from './BoardTile'
@@ -26,12 +26,12 @@ const grid = makeLayoutGrid(0, 8, 8)
 function Board({ chessBoard }: BoardProps) {
   const [numClicks, setNumClicks] = useState(0)
   const springStyle = useSpring({
-    transform: chessBoard.isWhitesTurn ? 'rotate(0deg)' : 'rotate(180deg)',
+    transform: chessBoard.isWhitesTurn ? 'scale(1)' : 'scale(-1)',
     config: {
       tension: 80,
       mass: 2,
-      friction: 25
-    }
+      friction: 25,
+    },
   })
   return (
     <grid.Container style={Object.assign(springStyle, boardContainerStyle)}>

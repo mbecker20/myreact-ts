@@ -1,8 +1,8 @@
 import React from 'react';
 import { PieceComponentProps } from '../types'
 import { gridPieceStyle } from './pieceStyle';
-import whiteBishopIcon from './icons/whiteBishop.svg'
-import blackBishopIcon from './icons/blackBishop.svg'
+import whiteBishopIcon from './pngIcons/whiteBishop.png'
+import blackBishopIcon from './pngIcons/blackBishop.png'
 import useStyles from './pieceJSS';
 import { useSpring } from 'react-spring'
 
@@ -18,7 +18,7 @@ function Bishop({ grid, gridPos, isWhite, onClick, isWhitesTurn }: PieceComponen
   })
   const gridPieceSpringStyle = Object.assign(Object.assign({}, gridPieceStyle), springStyle)
   const imgStyle = { 
-    transform: 'scaleX(1.2) scaleY(0.98)'
+    transform: 'scaleX(1) scaleY(1)'
   }
   return (
     <grid.Item gridPos={gridPos} style={gridPieceSpringStyle}>
