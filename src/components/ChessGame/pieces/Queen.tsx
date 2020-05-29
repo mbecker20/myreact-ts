@@ -1,35 +1,23 @@
 import React from 'react'
 import { PieceComponentProps } from '../types'
-import { gridPieceStyle } from './pieceStyle';
 import whiteQueenIcon from './pngIcons/whiteQueen.png'
 import blackQueenIcon from './pngIcons/blackQueen.png'
-import useStyles from './pieceJSS';
-import { useSpring } from 'react-spring'
+import Piece from './Piece'
 
-function Queen({ grid, gridPos, isWhite, onClick, isWhitesTurn }: PieceComponentProps) {
-  const classes = useStyles()
-  const springStyle = useSpring({ 
-    transform: isWhitesTurn ? 'translate(-50%, -50%) rotate(0deg)' : 'translate(-50%, -50%) rotate(180deg)',
-    config: {
-      tension: 80,
-      mass: 2,
-      friction: 25
-    }
-  })
-  const gridPieceSpringStyle = Object.assign(Object.assign({}, gridPieceStyle), springStyle)
+function Queen({ grid, gridPos, isWhite, onPointerDown, isWhitesTurn }: PieceComponentProps) {
   const imgStyle = { 
     transform: 'scaleY(1)'
   }
   return (
-    <grid.Item gridPos={gridPos} style={gridPieceSpringStyle}>
-      <img
-        className={classes.Piece}
-        src={isWhite ? whiteQueenIcon : blackQueenIcon }
-        style={imgStyle}
-        alt='queen icon'
-        onClick={onClick}
-      />
-    </grid.Item>
+    <Piece
+      id='bishop'
+      grid={grid}
+      gridPos={gridPos}
+      img={isWhite ? whiteQueenIcon : blackQueenIcon}
+      imgStyle={imgStyle}
+      onPointerDown={onPointerDown}
+      isWhitesTurn={isWhitesTurn}
+    />
   );
 }
 

@@ -16,10 +16,17 @@ export interface GIProps {
   children?: any
 }
 
+export interface GIAbsProps {
+  gridPos: [string, string],
+  style?: object,
+  children?: any
+}
+
 export interface LayoutGrid {
   grid: string[][],
   Container: (props: ContainerProps) => JSX.Element,
   StaticContainer: (props: ContainerProps) => JSX.Element,
   Item: (props: GIProps) => JSX.Element,
   StaticItem: (props: GIProps) => JSX.Element,
+  AbsoluteItem: (props: GIAbsProps) => JSX.Element,
 }

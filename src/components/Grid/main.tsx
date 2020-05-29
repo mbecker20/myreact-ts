@@ -3,8 +3,9 @@ import GridContainer from './GridContainer'
 import GridStaticContainer from './GridStaticContainer'
 import GridItem from './GridItem'
 import GridStaticItem from './GridStaticItem'
+import GridAbsoluteItem from './GridAbsoluteItem'
 import { makeGrid } from '../../helpers/vecFuncs'
-import { GIProps, LayoutGrid } from './types'
+import { GIProps, GIAbsProps, LayoutGrid } from './types'
 
 function createGridArray(padding: number, numRows: number, numCols: number): string[][] {
   const stepLeft = (100 - 2*padding) / numCols
@@ -28,12 +29,18 @@ function makeLayoutGrid(padding: number, numRows: number, numCols: number) {
       <GridStaticItem gridPos={gridPos} grid={gridArray} style={style} children={children}/>
     )
   }
+  function AbsoluteItem({ gridPos, style, children}: GIAbsProps) {
+    return (
+      <GridAbsoluteItem gridPos={gridPos} style={style} children={children}/>
+    )
+  }
   const Grid: LayoutGrid = {
     grid: gridArray,
     Container: GridContainer,
     StaticContainer: GridStaticContainer,
     Item: Item,
     StaticItem: StaticItem,
+    AbsoluteItem: AbsoluteItem,
   }
 
   return Grid

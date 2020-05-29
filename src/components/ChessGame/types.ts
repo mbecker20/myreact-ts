@@ -62,8 +62,18 @@ export interface PieceComponentProps {
   grid: LayoutGrid,
   isWhite: boolean,
   gridPos: [number, number],
-  onClick: () => void,
+  onPointerDown: (pointerEvent: object) => void,
   isWhitesTurn?: boolean,
+}
+
+export interface BasePieceComponentProps {
+  id: string,
+  grid: LayoutGrid,
+  gridPos: [number, number],
+  onPointerDown: (pointerEvent: object) => void,
+  isWhitesTurn?: boolean,
+  img: any,
+  imgStyle: object | undefined,
 }
 
 export interface GridPieceStyle {
