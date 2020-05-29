@@ -46,7 +46,7 @@ function App(): JSX.Element {
           openText='Home'
           closedText='H'
           onClick={() => {
-            navigate('/')
+            navigate('/myreact-ts/')
           }}
         />
         <SideBarButton 
@@ -56,7 +56,7 @@ function App(): JSX.Element {
           openText='TilePuzzle'
           closedText='T'
           onClick={() => {
-            navigate('/tilepuzzle')
+            navigate('/myreact-ts/tilepuzzle')
           }}
         />
         <SideBarButton 
@@ -66,14 +66,14 @@ function App(): JSX.Element {
           openText='Chess'
           closedText='C'
           onClick={() => {
-            navigate('/chess')
+            navigate('/myreact-ts/chess')
           }}
         />
       </NavBar>
       <Router className={classes.AppContent} style={contentStyle}>
-        <Homepage path='/' />
-        <TilePuzzle path='/tilepuzzle' />
-        <ChessGame path='/chess' />
+        <Homepage path='/myreact-ts' />
+        <TilePuzzle path='/myreact-ts/tilepuzzle' />
+        <ChessGame path='/myreact-ts/chess' />
       </Router>
     </div>
   )
