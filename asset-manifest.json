@@ -1,20 +1,19 @@
 {
   "files": {
     "main.css": "/myreact-ts/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "/myreact-ts/static/js/main.f47d5cf6.chunk.js",
-    "main.js.map": "/myreact-ts/static/js/main.f47d5cf6.chunk.js.map",
+    "main.js": "/myreact-ts/static/js/main.5cf5228f.chunk.js",
+    "main.js.map": "/myreact-ts/static/js/main.5cf5228f.chunk.js.map",
     "runtime-main.js": "/myreact-ts/static/js/runtime-main.317d3ef5.js",
     "runtime-main.js.map": "/myreact-ts/static/js/runtime-main.317d3ef5.js.map",
     "static/js/2.92f65c7f.chunk.js": "/myreact-ts/static/js/2.92f65c7f.chunk.js",
     "static/js/2.92f65c7f.chunk.js.map": "/myreact-ts/static/js/2.92f65c7f.chunk.js.map",
     "index.html": "/myreact-ts/index.html",
-    "precache-manifest.849f33b35ddb8a98ec51a046f88fd864.js": "/myreact-ts/precache-manifest.849f33b35ddb8a98ec51a046f88fd864.js",
+    "precache-manifest.99620e2eb849887ddaeda44d803523af.js": "/myreact-ts/precache-manifest.99620e2eb849887ddaeda44d803523af.js",
     "service-worker.js": "/myreact-ts/service-worker.js",
     "static/css/main.5ecd60fb.chunk.css.map": "/myreact-ts/static/css/main.5ecd60fb.chunk.css.map",
     "static/js/2.92f65c7f.chunk.js.LICENSE.txt": "/myreact-ts/static/js/2.92f65c7f.chunk.js.LICENSE.txt",
     "static/media/blackBishop.png": "/myreact-ts/static/media/blackBishop.b0de6bf8.png",
     "static/media/blackKing.png": "/myreact-ts/static/media/blackKing.b9a72ea9.png",
-    "static/media/blackKnight.png": "/myreact-ts/static/media/blackKnight.35b5db24.png",
     "static/media/blackQueen.png": "/myreact-ts/static/media/blackQueen.1ef75862.png",
     "static/media/whiteBishop.png": "/myreact-ts/static/media/whiteBishop.a3d45c72.png",
     "static/media/whiteKing.png": "/myreact-ts/static/media/whiteKing.7dda3043.png",
@@ -25,6 +24,6 @@
     "static/js/runtime-main.317d3ef5.js",
     "static/js/2.92f65c7f.chunk.js",
     "static/css/main.5ecd60fb.chunk.css",
-    "static/js/main.f47d5cf6.chunk.js"
+    "static/js/main.5cf5228f.chunk.js"
   ]
 }

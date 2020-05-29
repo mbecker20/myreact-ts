@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "25bb89e3c49fb1ffff5b5033ae9423de",
+    "revision": "517b75fde2edf37d4918531746a17a21",
     "url": "/myreact-ts/index.html"
   },
   {
-    "revision": "2f4626b394f8804406b7",
+    "revision": "a3c64f86051671e86021",
     "url": "/myreact-ts/static/css/main.5ecd60fb.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/myreact-ts/static/js/2.92f65c7f.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "2f4626b394f8804406b7",
-    "url": "/myreact-ts/static/js/main.f47d5cf6.chunk.js"
+    "revision": "a3c64f86051671e86021",
+    "url": "/myreact-ts/static/js/main.5cf5228f.chunk.js"
   },
   {
     "revision": "6472290610e6a3cff3e8",
@@ -30,10 +30,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "b9a72ea99d784346a337d1105aef5546",
     "url": "/myreact-ts/static/media/blackKing.b9a72ea9.png"
-  },
-  {
-    "revision": "35b5db242a4265c504b215751511dd61",
-    "url": "/myreact-ts/static/media/blackKnight.35b5db24.png"
   },
   {
     "revision": "1ef7586200bb87a0c889639ef4244cee",
