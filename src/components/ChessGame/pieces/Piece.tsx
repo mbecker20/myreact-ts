@@ -7,7 +7,7 @@ import { useSpring } from 'react-spring'
 function Piece({ id, grid, gridPos, img, imgStyle, onPointerDown, isWhitesTurn }: BasePieceComponentProps) {
   const classes = useStyles()
   const springStyle = useSpring({ 
-    transform: isWhitesTurn ? 'translate(-50%, -50%) rotate(0deg)' : 'translate(-50%, -50%) rotate(180deg)',
+    transform: isWhitesTurn ? 'translate(-50%, -50%) rotate(0deg)' : 'translate(-50%, -50%) rotate(0deg)',
     config: {
       tension: 80,
       mass: 2,

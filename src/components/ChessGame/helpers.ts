@@ -114,11 +114,11 @@ function showPossiblePawnMoves(chessBoard: ChessBoard, pawn: PawnPiece, boardPos
         movePiece(chessBoard, pawn, target, isWhite)
         const posContent = chessBoard.boardGrid[target[0]][target[1]+1]
         const negContent = chessBoard.boardGrid[target[0]][target[1]-1]
-        if (posContent.slice(0,2) === otherColor + 'P') {
+        if (posContent && posContent.slice(0,2) === otherColor + 'P') {
           const posPawn = chessBoard[aliveOtherPiecesKey][posContent] as PawnPiece
           posPawn.canEnPassantNeg = true
         }
-        if (negContent.slice(0,2) === otherColor + 'P') {
+        if (negContent && negContent.slice(0,2) === otherColor + 'P') {
           const negPawn = chessBoard[aliveOtherPiecesKey][negContent] as PawnPiece
           negPawn.canEnPassantPos = true
         }
@@ -414,7 +414,7 @@ function makePiece(chessBoard: ChessBoard, ID: PieceID, position: BoardPos, isWh
     position: position,
     Component: component,
     onClick: () => {
-      showPossibleMoves(chessBoard,team + ID, isWhite)
+      showPossibleMoves(chessBoard, team + ID, isWhite)
     },
     isWhite: isWhite,
     ID: ID,
