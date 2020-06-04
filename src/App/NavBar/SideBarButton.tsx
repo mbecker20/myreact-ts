@@ -37,19 +37,18 @@ function SideBarButton({ isOpen, openWidth, closedWidth, openText, closedText, o
 	const buttonSpring = useSpring({ width: isOpen ? openWidth - 10 : closedWidth - 10 })
 	const closedTextSpring = useSpring({ 
 		opacity: isOpen ? 0 : 1,
-		transform: isOpen ? 'scaleX(0)' : 'scaleX(1)',
+		//fontSize: isOpen ? 'calc(10px + 0vmin)' : 'calc(10px + 2vmin)',
 	})
 	const openTextSpring = useSpring({ 
 		opacity: isOpen ? 1 : 0,
-		transform: isOpen ? 'scaleX(1)' : 'scaleX(0)',
+		fontSize: isOpen ? 'calc(10px + 2vmin)' : 'calc(10px + 0vmin)',
 	})
 
 	const baseStyleCopy = Object.assign({}, baseStyle)
-	const baseTextStyleCopy = Object.assign({}, baseTextStyle)
 	return (
 		<Button style={Object.assign(buttonSpring, Object.assign(baseStyleCopy, style))} onClick={onClick}>
-			<animated.div style={Object.assign(closedTextSpring, baseTextStyleCopy)}>{closedText}</animated.div>
-			<animated.div style={Object.assign(openTextSpring, baseTextStyleCopy)}>{openText}</animated.div>
+			<animated.div style={Object.assign(closedTextSpring, baseTextStyle)}>{closedText}</animated.div>
+			<animated.div style={Object.assign(openTextSpring, baseTextStyle)}>{openText}</animated.div>
 		</Button>
 	)
 }
