@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import NavBar from './NavBar/main'
 import SideBarButton from './NavBar/SideBarButton'
-import { TilePuzzle, ChessGame } from '../components/all'
+import { TilePuzzle, ChessGame, ChapterViewer } from '../components/all'
 import { Router, navigate } from '@reach/router'
 import useStyles from './style'
 import colors from '../appColors'
@@ -69,6 +69,7 @@ function App(): JSX.Element {
             navigate('/myreact-ts/chess')
           }}
         />
+        <ChapterViewer />
       </NavBar>
       <Router className={classes.AppContent} style={contentStyle}>
         <Homepage path='/myreact-ts' />
