@@ -11,9 +11,9 @@ interface Props {
 function SubChapter({ isOpen, children }: Props) {
   const classes = useJSS(colors)
   const springStyle = useSpring({
-    height: isOpen ? '7vmin' : '0vmin',
+    height: isOpen ? '5vmin' : '0vmin',
     opacity: isOpen ? 1 : 0,
-    padding: isOpen ? '10px' : '0px'
+    padding: isOpen ? '5px' : '0px'
   })
 
   return (
