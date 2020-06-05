@@ -27,11 +27,13 @@ const useStyles = createUseStyles({
 
   SideBar: {
     backgroundColor: (theme: Theme) => theme.colors.secondary,
-    height: 'calc(100vh - 80px)',
+    height: 'calc(100vh - 100px)',
     display: 'flex',
     flexDirection: 'column',
+    flexWrap: 'nowrap',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
+    padding: '10px',
     fontSize: 'calc(10px + 2vmin)',
     color: 'white',
     textOrientation: 'upright',
@@ -39,7 +41,8 @@ const useStyles = createUseStyles({
     top: '80px',
     left: '0px',
     userSelect: 'none',
-    zIndex: '99'
+    zIndex: '99',
+    boxSizing: 'borderBox',
   },
   
   AppContent: {

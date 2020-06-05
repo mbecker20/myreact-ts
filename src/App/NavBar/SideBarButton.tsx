@@ -15,13 +15,13 @@ interface BaseProps {
 
 interface BaseStyle {
 	height: string,
-	position: string,
+	//position: string,
 	backgroundColor: string,
 }
 
 const baseStyle: BaseStyle = {
 	height: '7vh',
-	position: 'absolute',
+	//position: 'absolute',
 	backgroundColor: colors.primary,
 }
 

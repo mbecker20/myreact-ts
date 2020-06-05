@@ -4,8 +4,11 @@ import { Theme } from '../../appColors'
 const useStyles = createUseStyles({
   Button: {
     backgroundColor: (theme: Theme) => theme.colors.secondary,
-    position: 'absolute',
+    position: 'relative',
     display: 'flex',
+    flexGrow: '1',
+    flexShrink: '1',
+    flexBasis: 'auto',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: '15px',
@@ -14,6 +17,7 @@ const useStyles = createUseStyles({
       cursor: 'pointer'
     },
     userSelect: 'none',
+    margin: '10px',
   },
 })
 
