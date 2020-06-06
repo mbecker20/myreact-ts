@@ -17,12 +17,14 @@ interface BaseStyle {
 	height: string,
 	//position: string,
 	backgroundColor: string,
+	flexBasis: string,
 }
 
 const baseStyle: BaseStyle = {
 	height: '7vh',
 	//position: 'absolute',
 	backgroundColor: colors.primary,
+	flexBasis: 'auto',
 }
 
 interface BaseTextStyle {

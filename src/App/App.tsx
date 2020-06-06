@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import NavBar from './NavBar/main'
 import SideBarButton from './NavBar/SideBarButton'
-import { TilePuzzle, ChessGame, ChapterViewer } from '../components/all'
+import { TilePuzzle, ChessGame, Switch } from '../components/all'
 import { Router, navigate } from '@reach/router'
 import useStyles from './style'
 import colors from '../appColors'
@@ -69,7 +69,12 @@ function App(): JSX.Element {
             navigate('/myreact-ts/chess')
           }}
         />
-        <ChapterViewer />
+        <Switch
+          text={'test'}
+          onSwitch={(value: boolean) => {console.log(`value: ${value}`)}}
+          initState={false}
+          style={{ width: '30vmin', height: '7vmin'}}
+        />
       </NavBar>
       <Router className={classes.AppContent} style={contentStyle}>
         <Homepage path='/myreact-ts' />
