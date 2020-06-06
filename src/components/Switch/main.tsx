@@ -21,6 +21,9 @@ function Switch({ text, onSwitch, initState, style }: Props) {
   const spring = useSpring({
     cx: state ? '65' : '25',
     fill: state ? 'green' : 'red',
+    config: {
+      tension: 250,
+    },
   })
   return (
     <div className={classes.Bounder} style={style}>
