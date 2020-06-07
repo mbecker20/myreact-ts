@@ -13,7 +13,7 @@ interface DragEvent {
   preventDefault: () => void
 }
 
-function HighlightedSquare({ grid, gridPos, onClick}: Props) {
+function PossibleMove({ grid, gridPos, onClick}: Props) {
   const classes = useStyles()
   const [isHighlighted, setHighlighted] = useState(false)
   const springStyle = useSpring({
@@ -53,4 +53,4 @@ function HighlightedSquare({ grid, gridPos, onClick}: Props) {
   )
 }
 
-export default HighlightedSquare
+export default PossibleMove

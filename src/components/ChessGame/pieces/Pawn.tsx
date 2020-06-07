@@ -4,7 +4,7 @@ import whitePawnIcon from './pngIcons/whitePawn.png'
 import blackPawnIcon from './pngIcons/blackPawn.png'
 import Piece from './Piece'
 
-function Pawn({ grid, gridPos, isWhite, onPointerDown, isWhitesTurn }: PieceComponentProps) {
+function Pawn({ grid, gridPos, isWhite, onClick, isWhitesTurn, onDragStart }: PieceComponentProps) {
   const imgStyle = { 
     transform: 'scaleX(0.6) scaleY(1)'
   }
@@ -15,8 +15,9 @@ function Pawn({ grid, gridPos, isWhite, onPointerDown, isWhitesTurn }: PieceComp
       gridPos={gridPos}
       img={isWhite ? whitePawnIcon : blackPawnIcon}
       imgStyle={imgStyle}
-      onPointerDown={onPointerDown}
+      onClick={onClick}
       isWhitesTurn={isWhitesTurn}
+      onDragStart={onDragStart}
     />
   );
 }

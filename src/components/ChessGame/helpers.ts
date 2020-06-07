@@ -105,10 +105,10 @@ function showPossiblePawnMoves(chessBoard: ChessBoard, pawn: PawnPiece, boardPos
   if (boardPos[1] > 0 && chessBoard.boardGrid[boardPos[0] + step][boardPos[1] - 1][0] === otherColor) {
     possibleMoves.push([boardPos[0] + step, boardPos[1] - 1])
   }
-  chessBoard.highlightedSquares = possibleMoves
+  chessBoard.possibleMoves = possibleMoves
   if (boardPos[0] === startingRank && chessBoard.boardGrid[boardPos[0] + 2*step][boardPos[1]] === 'E') {
     const target = [boardPos[0] + 2*step, boardPos[1]] as BoardPos
-    chessBoard.specialHighlightedSquares.push({
+    chessBoard.specialPossibleMoves.push({
       boardPos: target,
       onClick: () => {
         movePiece(chessBoard, pawn, target, isWhite)
@@ -122,26 +122,26 @@ function showPossiblePawnMoves(chessBoard: ChessBoard, pawn: PawnPiece, boardPos
           const negPawn = chessBoard[aliveOtherPiecesKey][negContent] as PawnPiece
           negPawn.canEnPassantPos = true
         }
-        chessBoard.specialHighlightedSquares = []
+        chessBoard.specialPossibleMoves = []
       }
     })
   } else if (pawn.canEnPassantPos) {
-    chessBoard.specialHighlightedSquares.push({
+    chessBoard.specialPossibleMoves.push({
       boardPos: [boardPos[0] + step, boardPos[1] + 1],
       onClick: () => {
         pawn.enPassant([boardPos[0] + step, boardPos[1] + 1])
-        chessBoard.specialHighlightedSquares = []
+        chessBoard.specialPossibleMoves = []
         pawn.canEnPassantNeg = false
         pawn.canEnPassantPos = false
       }
     })
   }
   if (pawn.canEnPassantNeg) {
-    chessBoard.specialHighlightedSquares.push({
+    chessBoard.specialPossibleMoves.push({
       boardPos: [boardPos[0] + step, boardPos[1] - 1],
       onClick: () => {
         pawn.enPassant([boardPos[0] + step, boardPos[1] - 1])
-        chessBoard.specialHighlightedSquares = []
+        chessBoard.specialPossibleMoves = []
       }
     })
   }
@@ -177,18 +177,18 @@ function showPossibleKingMoves(chessBoard: ChessBoard, king: KingPiece, boardPos
   if (isValidDelta(chessBoard.boardGrid, otherTeam, row, 0, col, -i)) {
     possibleMoves.push([row, col-i])
   }
-  chessBoard.highlightedSquares = possibleMoves
+  chessBoard.possibleMoves = possibleMoves
 
   if (king.canCastleShort) {
     if (boardGridEmpty(chessBoard.boardGrid, [row, col+1]) && boardGridEmpty(chessBoard.boardGrid, [row, col+2])) {
-      chessBoard.specialHighlightedSquares.push({boardPos: [row, 6], onClick: () => {
+      chessBoard.specialPossibleMoves.push({boardPos: [row, 6], onClick: () => {
         king.shortCastle()
       }})
     }
   }
   if (king.canCastleLong) {
     if (boardGridEmpty(chessBoard.boardGrid, [row, 1]) && boardGridEmpty(chessBoard.boardGrid, [row, 2]) && boardGridEmpty(chessBoard.boardGrid, [row, 3])) {
-      chessBoard.specialHighlightedSquares.push({boardPos: [row, 2], onClick: () => {
+      chessBoard.specialPossibleMoves.push({boardPos: [row, 2], onClick: () => {
         king.longCastle()
       }})
     }
@@ -264,7 +264,7 @@ function showPossibleQueenMoves(chessBoard: ChessBoard, boardPos: BoardPos, isWh
   if (isCaptureDelta(chessBoard.boardGrid, otherTeam, row, 0, col, -i)){
     possibleMoves.push([row, col-i])
   }
-  chessBoard.highlightedSquares = possibleMoves
+  chessBoard.possibleMoves = possibleMoves
 }
 
 function showPossibleRookMoves(chessBoard: ChessBoard, boardPos: BoardPos, isWhite: boolean) {
@@ -304,7 +304,7 @@ function showPossibleRookMoves(chessBoard: ChessBoard, boardPos: BoardPos, isWhi
   if (isCaptureDelta(chessBoard.boardGrid, otherTeam, row, 0, col, -i)){
     possibleMoves.push([row, col-i])
   }
-  chessBoard.highlightedSquares = possibleMoves
+  chessBoard.possibleMoves = possibleMoves
 }
 
 function showPossibleBishopMoves(chessBoard: ChessBoard, boardPos: BoardPos, isWhite: boolean) {
@@ -344,7 +344,7 @@ function showPossibleBishopMoves(chessBoard: ChessBoard, boardPos: BoardPos, isW
   if (isCaptureDelta(chessBoard.boardGrid, otherTeam, row, -i, col, -i)){
     possibleMoves.push([row-i, col-i])
   }
-  chessBoard.highlightedSquares = possibleMoves
+  chessBoard.possibleMoves = possibleMoves
 }
 
 function showPossibleKnightMoves(chessBoard: ChessBoard, boardPos: BoardPos, isWhite: boolean) {
@@ -369,12 +369,12 @@ function showPossibleKnightMoves(chessBoard: ChessBoard, boardPos: BoardPos, isW
   } if (row - 1 > -1 && col - 2 > -1 && boardGridEmptyOrOtherTeam(chessBoard.boardGrid, [row-1, col-2], otherTeam)) {
     possibleMoves.push([row-1, col-2])
   }
-  chessBoard.highlightedSquares = possibleMoves
+  chessBoard.possibleMoves = possibleMoves
 }
 
 function showPossibleMoves(chessBoard: ChessBoard, ID: string, isWhite: boolean) {
-  chessBoard.highlightedSquares = []
-  chessBoard.specialHighlightedSquares = []
+  chessBoard.possibleMoves = []
+  chessBoard.specialPossibleMoves = []
   if (isWhite === chessBoard.isWhitesTurn) {
     const piecesKey = isWhite ? 'aliveWhitePieces' : 'aliveBlackPieces'
     const boardPos = chessBoard[piecesKey][ID].position
@@ -410,15 +410,30 @@ function makePiece(chessBoard: ChessBoard, ID: PieceID, position: BoardPos, isWh
   } else if (ID[0] === 'N') {
     component = pieces.Knight
   }
-  return {
+  let piece = {
     position: position,
     Component: component,
     onClick: () => {
-      showPossibleMoves(chessBoard, team + ID, isWhite)
+      
     },
+    isSelected: false,
     isWhite: isWhite,
     ID: ID,
   }
+  piece.onClick = function() {
+    if (!piece.isSelected) {
+      piece.isSelected = true
+      chessBoard.chosenPiece = piece
+      showPossibleMoves(chessBoard, team + ID, isWhite)
+    } else {
+      chessBoard.possibleMoves = []
+      chessBoard.specialPossibleMoves = []
+      chessBoard.chosenPiece = undefined
+      piece.isSelected = false
+    }
+    
+  }
+  return piece
 }
 
 function makePieces(chessBoard: ChessBoard, isWhite: boolean) {
@@ -482,8 +497,8 @@ export function movePiece(chessBoard: ChessBoard, piece: Piece, target: BoardPos
     chessBoard.boardGrid[piece.position[0]][piece.position[1]] = 'E'
     piece.position = target
   }
-  chessBoard.highlightedSquares = []
-  chessBoard.specialHighlightedSquares = []
+  chessBoard.possibleMoves = []
+  chessBoard.specialPossibleMoves = []
   
 }
 
@@ -492,13 +507,13 @@ export function makeChessBoard(): ChessBoard {
     isWhitesTurn: true,
     boardGrid: makeBoardGrid(),
     moveList: [],
-    highlightedSquares: [],
-    specialHighlightedSquares: [],
+    possibleMoves: [],
+    specialPossibleMoves: [],
     aliveWhitePieces: {},
     deadWhitePieces: {},
     aliveBlackPieces: {},
     deadBlackPieces: {},
-    highlightingPiece: undefined,
+    chosenPiece: undefined,
   }
   chessBoard.aliveWhitePieces = makePieces(chessBoard, true)
   chessBoard.aliveBlackPieces = makePieces(chessBoard, false)

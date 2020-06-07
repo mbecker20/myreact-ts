@@ -8,11 +8,16 @@ export function renderWhitePieces(chessBoard: ChessBoard, grid: LayoutGrid, stat
       const piece = chessBoard.aliveWhitePieces[ID]
       function onClick() {
         piece.onClick()
-        chessBoard.highlightingPiece = piece
         setState(state + 1)
       }
+      function onDragStart() {
+        if (!piece.isSelected) {
+          piece.onClick()
+          setState(state + 1)
+        }
+      }
       return (
-        <piece.Component key={ID} grid={grid} gridPos={piece.position} isWhite={true} onPointerDown={onClick} isWhitesTurn={chessBoard.isWhitesTurn}/>
+        <piece.Component key={ID} grid={grid} gridPos={piece.position} isWhite={true} onClick={onClick} onDragStart={onDragStart} isWhitesTurn={chessBoard.isWhitesTurn}/>
       )
     })
   )
@@ -24,11 +29,16 @@ export function renderBlackPieces(chessBoard: ChessBoard, grid: LayoutGrid, stat
       const piece = chessBoard.aliveBlackPieces[ID]
       function onClick() {
         piece.onClick()
-        chessBoard.highlightingPiece = piece
         setState(state + 1)
       }
+      function onDragStart() {
+        if (!piece.isSelected) {
+          piece.onClick()
+          setState(state + 1)
+        }
+      }
       return (
-        <piece.Component key={ID} grid={grid} gridPos={piece.position} isWhite={false} onPointerDown={onClick} isWhitesTurn={chessBoard.isWhitesTurn}/>
+        <piece.Component key={ID} grid={grid} gridPos={piece.position} isWhite={false} onClick={onClick} onDragStart={onDragStart} isWhitesTurn={chessBoard.isWhitesTurn}/>
       )
     })
   )

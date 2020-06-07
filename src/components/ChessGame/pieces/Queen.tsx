@@ -4,7 +4,7 @@ import whiteQueenIcon from './pngIcons/whiteQueen.png'
 import blackQueenIcon from './pngIcons/blackQueen.png'
 import Piece from './Piece'
 
-function Queen({ grid, gridPos, isWhite, onPointerDown, isWhitesTurn }: PieceComponentProps) {
+function Queen({ grid, gridPos, isWhite, onClick, isWhitesTurn, onDragStart }: PieceComponentProps) {
   const imgStyle = { 
     transform: 'scaleY(1)'
   }
@@ -15,8 +15,9 @@ function Queen({ grid, gridPos, isWhite, onPointerDown, isWhitesTurn }: PieceCom
       gridPos={gridPos}
       img={isWhite ? whiteQueenIcon : blackQueenIcon}
       imgStyle={imgStyle}
-      onPointerDown={onPointerDown}
+      onClick={onClick}
       isWhitesTurn={isWhitesTurn}
+      onDragStart={onDragStart}
     />
   );
 }

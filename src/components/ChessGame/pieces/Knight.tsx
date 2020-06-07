@@ -4,7 +4,7 @@ import whiteKnightIcon from './pngIcons/whiteKnight.png'
 import blackKnightIcon from './pngIcons/blackKnight.png'
 import Piece from './Piece'
 
-function Knight({ grid, gridPos, isWhite, onPointerDown, isWhitesTurn }: PieceComponentProps) {
+function Knight({ grid, gridPos, isWhite, onClick, isWhitesTurn, onDragStart }: PieceComponentProps) {
   const imgStyle = { 
     transform: 'scaleX(0.8) scaleY(1)'
   }
@@ -15,8 +15,9 @@ function Knight({ grid, gridPos, isWhite, onPointerDown, isWhitesTurn }: PieceCo
       gridPos={gridPos}
       img={isWhite ? whiteKnightIcon : blackKnightIcon}
       imgStyle={imgStyle}
-      onPointerDown={onPointerDown}
+      onClick={onClick}
       isWhitesTurn={isWhitesTurn}
+      onDragStart={onDragStart}
     />
   );
 }

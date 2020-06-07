@@ -4,7 +4,7 @@ import whiteBishopIcon from './pngIcons/whiteBishop.png'
 import blackBishopIcon from './pngIcons/blackBishop.png'
 import Piece from './Piece'
 
-function Bishop({ grid, gridPos, isWhite, onPointerDown, isWhitesTurn }: PieceComponentProps) {
+function Bishop({ grid, gridPos, isWhite, onClick, isWhitesTurn, onDragStart }: PieceComponentProps) {
   const imgStyle = { 
     transform: 'scaleX(1) scaleY(1)'
   }
@@ -15,7 +15,8 @@ function Bishop({ grid, gridPos, isWhite, onPointerDown, isWhitesTurn }: PieceCo
       gridPos={gridPos}
       img={isWhite ? whiteBishopIcon : blackBishopIcon}
       imgStyle={imgStyle}
-      onPointerDown={onPointerDown}
+      onClick={onClick}
+      onDragStart={onDragStart}
       isWhitesTurn={isWhitesTurn}
     />
   )

@@ -12,6 +12,7 @@ export interface Piece {
   Component: (props: any) => JSX.Element,
   onClick: () => void,
   isWhite: boolean,
+  isSelected: boolean,
 }
 
 export interface PawnPiece extends Piece {
@@ -39,22 +40,22 @@ export interface Team {
   [pieceID: string]: Piece | PawnPiece | KingPiece
 }
 
-export interface SpecialHighlightedSquare {
+export interface SpecialPossibleMove {
   boardPos: BoardPos,
   onClick: () => void,
 }
 
 export interface ChessBoard {
   isWhitesTurn: boolean,
-  boardGrid: string[][],
+  boardGrid: BoardGrid,
   moveList: Move[],
   aliveWhitePieces: Team,
   deadWhitePieces: Team,
   aliveBlackPieces: Team,
   deadBlackPieces: Team,
-  highlightedSquares: BoardPos[],
-  highlightingPiece: Piece | undefined,
-  specialHighlightedSquares: SpecialHighlightedSquare[],
+  chosenPiece: Piece | undefined,
+  possibleMoves: BoardPos[],
+  specialPossibleMoves: SpecialPossibleMove[],
   [index: string]: any,
 }
 
@@ -62,7 +63,8 @@ export interface PieceComponentProps {
   grid: LayoutGrid,
   isWhite: boolean,
   gridPos: [number, number],
-  onPointerDown: (pointerEvent: object) => void,
+  onClick: () => void,
+  onDragStart: () => void,
   isWhitesTurn?: boolean,
 }
 
@@ -70,7 +72,8 @@ export interface BasePieceComponentProps {
   id: string,
   grid: LayoutGrid,
   gridPos: [number, number],
-  onPointerDown: (pointerEvent: object) => void,
+  onClick: () => void,
+  onDragStart: () => void,
   isWhitesTurn?: boolean,
   img: any,
   imgStyle: object | undefined,

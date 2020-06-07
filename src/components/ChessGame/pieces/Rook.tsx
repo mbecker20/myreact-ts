@@ -4,7 +4,7 @@ import whiteRookIcon from './pngIcons/whiteRook.png'
 import blackRookIcon from './pngIcons/blackRook.png'
 import Piece from './Piece'
 
-function Rook({ grid, gridPos, isWhite, onPointerDown, isWhitesTurn }: PieceComponentProps) {
+function Rook({ grid, gridPos, isWhite, onClick, isWhitesTurn, onDragStart }: PieceComponentProps) {
   const imgStyle = { 
     transform: 'scaleX(0.6) scaleY(1)' 
   }
@@ -15,8 +15,9 @@ function Rook({ grid, gridPos, isWhite, onPointerDown, isWhitesTurn }: PieceComp
       gridPos={gridPos}
       img={isWhite ? whiteRookIcon : blackRookIcon}
       imgStyle={imgStyle}
-      onPointerDown={onPointerDown}
+      onClick={onClick}
       isWhitesTurn={isWhitesTurn}
+      onDragStart={onDragStart}
     />
   );
 }

@@ -4,7 +4,7 @@ import { gridPieceStyle } from './pieceStyle';
 import useStyles from './pieceJSS';
 import { useSpring } from 'react-spring'
 
-function Piece({ id, grid, gridPos, img, imgStyle, onPointerDown, isWhitesTurn }: BasePieceComponentProps) {
+function Piece({ id, grid, gridPos, img, imgStyle, onClick, onDragStart, isWhitesTurn }: BasePieceComponentProps) {
   const classes = useStyles()
   const springStyle = useSpring({ 
     transform: isWhitesTurn ? 'translate(-50%, -50%) rotate(0deg)' : 'translate(-50%, -50%) rotate(0deg)',
@@ -22,7 +22,8 @@ function Piece({ id, grid, gridPos, img, imgStyle, onPointerDown, isWhitesTurn }
         src={img}
         style={imgStyle}
         alt={id}
-        onPointerDown={onPointerDown}
+        onPointerDown={onClick}
+        onDragStart={onDragStart}
         draggable={true}
       />
     </grid.Item>

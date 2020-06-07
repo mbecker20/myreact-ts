@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import makeLayoutGrid from '../Grid/main'
-import { ChessBoard, Piece, SpecialHighlightedSquare } from './types'
+import { ChessBoard } from './types'
 import BoardTile from './BoardTile'
 import { renderWhitePieces, renderBlackPieces } from './pieces/RenderPieces'
-import HighlightedSquare from './HighlightedSquare'
-import { movePiece } from './helpers'
+import { renderPossibleMoves, renderSpecialPossibleMoves } from './RenderPossibleMoves'
 import { useSpring } from 'react-spring'
 
 interface BoardProps {
@@ -44,26 +43,8 @@ function Board({ chessBoard }: BoardProps) {
       }).flat()}
       {renderWhitePieces(chessBoard, grid, numClicks, setNumClicks)}
       {renderBlackPieces(chessBoard, grid, numClicks, setNumClicks)}
-      {chessBoard.highlightedSquares.map((square, i) => {
-        const movingPiece = chessBoard.highlightingPiece as Piece
-        function innerMovePiece() {
-          movePiece(chessBoard, movingPiece, square, movingPiece.isWhite)
-          setNumClicks(numClicks + 1)
-        }
-        return (
-          <HighlightedSquare key={movingPiece.ID + i} grid={grid} gridPos={square} onClick={innerMovePiece}/>
-        )
-      })}
-      {chessBoard.specialHighlightedSquares.map((square: SpecialHighlightedSquare, i: number) => {
-        const movingPiece = chessBoard.highlightingPiece as Piece
-        function innerOnClick() {
-          square.onClick()
-          setNumClicks(numClicks + 1)
-        }
-        return (
-          <HighlightedSquare key={movingPiece.ID + i} grid={grid} gridPos={square.boardPos} onClick={innerOnClick}/>
-        )
-      })}
+      {renderPossibleMoves(chessBoard, grid, numClicks, setNumClicks)}
+      {renderSpecialPossibleMoves(chessBoard, grid, numClicks, setNumClicks)}
     </grid.Container>
   )
 }
