@@ -6,7 +6,11 @@ import { useSpring } from 'react-spring'
 interface Props {
   grid: LayoutGrid,
   gridPos: [number, number],
-  onClick: (ev: any) => void
+  onClick: () => void
+}
+
+interface DragEvent {
+  preventDefault: () => void
 }
 
 function HighlightedSquare({ grid, gridPos, onClick}: Props) {
@@ -34,15 +38,15 @@ function HighlightedSquare({ grid, gridPos, onClick}: Props) {
         onClick={onClick}
         onPointerEnter={onPointerEnter}
         onPointerLeave={onPointerLeave}
-        onDragEnter={(ev: any) => {
-          ev.preventDefault()
+        onDragEnter={() => {
           onPointerEnter()
         }}
-        onDragLeave={(ev: any) => {
-          ev.preventDefault()
+        onDragLeave={() => {
           onPointerLeave()
         }}
-        onDragOver={(ev: any) => ev.preventDefault()}
+        onDragOver={(ev: DragEvent) => {
+          ev.preventDefault()
+        }}
         onDrop={onClick}
       />
     </grid.Item>
