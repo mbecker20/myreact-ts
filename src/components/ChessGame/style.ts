@@ -18,6 +18,13 @@ const useStyles = createUseStyles({
   HighlightedSquare: {
     width: '10vmin',
     height: '10vmin',
+    position: 'absolute',
+  },
+
+  InteractLayer: {
+    width: '10vmin',
+    height: '10vmin',
+    opacity: '0',
   },
 })
 

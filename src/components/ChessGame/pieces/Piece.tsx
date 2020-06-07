@@ -23,6 +23,7 @@ function Piece({ id, grid, gridPos, img, imgStyle, onPointerDown, isWhitesTurn }
         style={imgStyle}
         alt={id}
         onPointerDown={onPointerDown}
+        draggable={true}
       />
     </grid.Item>
   );

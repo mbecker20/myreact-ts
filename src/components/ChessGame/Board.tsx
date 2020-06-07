@@ -56,7 +56,8 @@ function Board({ chessBoard }: BoardProps) {
       })}
       {chessBoard.specialHighlightedSquares.map((square: SpecialHighlightedSquare, i: number) => {
         const movingPiece = chessBoard.highlightingPiece as Piece
-        function innerOnClick() {
+        function innerOnClick(ev: any) {
+          ev.preventDefault()
           square.onClick()
           setNumClicks(numClicks + 1)
         }
