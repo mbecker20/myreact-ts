@@ -29,11 +29,12 @@ export interface KingPiece extends Piece {
 }
 
 export interface Move {
-  isWhiteMove: boolean,
-  piece: Piece,
-  from: BoardPos,
-  to: BoardPos,
-  taken?: Piece,
+  boardGrid: BoardGrid,
+  moveID: string,
+  aliveWhitePieces: Team,
+  deadWhitePieces: Team,
+  aliveBlackPieces: Team,
+  deadBlackPieces: Team
 }
 
 export interface Team {
@@ -56,6 +57,7 @@ export interface ChessBoard {
   chosenPiece: Piece | undefined,
   possibleMoves: BoardPos[],
   specialPossibleMoves: SpecialPossibleMove[],
+  highlightedTiles: BoardPos[],
   [index: string]: any,
 }
 

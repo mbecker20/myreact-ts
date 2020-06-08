@@ -132,6 +132,7 @@ function makeChessBoard(): ChessBoard {
     moveList: [],
     possibleMoves: [],
     specialPossibleMoves: [],
+    highlightedTiles: [],
     aliveWhitePieces: {},
     deadWhitePieces: {},
     aliveBlackPieces: {},

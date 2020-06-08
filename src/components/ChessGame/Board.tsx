@@ -37,14 +37,14 @@ function Board({ chessBoard }: BoardProps) {
       {chessBoard.boardGrid.map((row, i) => {
         return row.map((pieceID, j) => {
           return (
-            <BoardTile key={i*8 + j} grid={grid} gridPos={[i,j]} isHighlighted={false}/>
+            <BoardTile key={i*8 + j} grid={grid} gridPos={[i,j]}/>
           )
         })
       }).flat()}
-      {renderWhitePieces(chessBoard, grid, numClicks, setNumClicks)}
-      {renderBlackPieces(chessBoard, grid, numClicks, setNumClicks)}
       {renderPossibleMoves(chessBoard, grid, numClicks, setNumClicks)}
       {renderSpecialPossibleMoves(chessBoard, grid, numClicks, setNumClicks)}
+      {renderWhitePieces(chessBoard, grid, numClicks, setNumClicks)}
+      {renderBlackPieces(chessBoard, grid, numClicks, setNumClicks)}
     </grid.Container>
   )
 }
