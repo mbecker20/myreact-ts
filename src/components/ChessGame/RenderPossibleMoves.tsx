@@ -15,7 +15,12 @@ export function renderPossibleMoves(chessBoard: ChessBoard, grid: LayoutGrid, nu
         setNumClicks(numClicks + 1)
       }
       return (
-        <PossibleMove key={movingPiece.ID + i} grid={grid} gridPos={square} onClick={innerMovePiece}/>
+        <PossibleMove
+          key={movingPiece.ID + i}
+          grid={grid}
+          gridPos={square}
+          onClick={innerMovePiece}
+        />
       )
     })
   );

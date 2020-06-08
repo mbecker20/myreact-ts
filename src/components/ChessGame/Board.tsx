@@ -4,6 +4,7 @@ import { ChessBoard } from './types'
 import BoardTile from './BoardTile'
 import { renderWhitePieces, renderBlackPieces } from './pieces/RenderPieces'
 import { renderPossibleMoves, renderSpecialPossibleMoves } from './RenderPossibleMoves'
+import { renderHighlightedTiles } from './renderHighlightedTiles'
 import { useSpring } from 'react-spring'
 
 interface BoardProps {
@@ -41,10 +42,11 @@ function Board({ chessBoard }: BoardProps) {
           )
         })
       }).flat()}
-      {renderPossibleMoves(chessBoard, grid, numClicks, setNumClicks)}
-      {renderSpecialPossibleMoves(chessBoard, grid, numClicks, setNumClicks)}
+      {renderHighlightedTiles(chessBoard, grid)}
       {renderWhitePieces(chessBoard, grid, numClicks, setNumClicks)}
       {renderBlackPieces(chessBoard, grid, numClicks, setNumClicks)}
+      {renderPossibleMoves(chessBoard, grid, numClicks, setNumClicks)}
+      {renderSpecialPossibleMoves(chessBoard, grid, numClicks, setNumClicks)}
     </grid.Container>
   )
 }

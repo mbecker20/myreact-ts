@@ -35,3 +35,11 @@ export function addToMoveList(chessBoard: ChessBoard, piece: Piece, startTarget:
   }
   chessBoard.moveList.push(move)
 }
+
+export function restoreFromMove(chessBoard: ChessBoard, move: Move) {
+  chessBoard.boardGrid = move.boardGrid
+  chessBoard.aliveWhitePieces = move.aliveWhitePieces
+  chessBoard.aliveBlackPieces = move.aliveBlackPieces
+  chessBoard.deadWhitePieces = move.deadWhitePieces
+  chessBoard.deadBlackPieces = move.deadBlackPieces
+}

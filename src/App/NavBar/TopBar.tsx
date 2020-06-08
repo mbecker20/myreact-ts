@@ -1,15 +1,13 @@
-import React from 'react';
-
-interface Classes {
-  TopBar: any
-}
+import React from 'react'
+import useJSS from '../style'
+import colors from '../../appColors'
 
 interface Props {
-  classes: Classes,
   text: string
 }
 
-function TopBar({ classes, text }: Props): JSX.Element {
+function TopBar({ text }: Props) {
+  const classes = useJSS(colors)
   return (
     <div className={classes.TopBar}>
       {text}

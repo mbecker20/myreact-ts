@@ -1,29 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSpring, animated } from 'react-spring'
 import SideBarButton from './SideBarButton'
 import colors from '../../appColors';
-
-interface Classes {
-  SideBar: any
-}
+import useJSS from '../style'
+import { navigate } from '@reach/router'
 
 interface Props {
-  isOpen: boolean,
-  toggleOpen: () => void,
   openWidth: number,
   closedWidth: number,
-  classes: Classes,
-  children: any
 }
 
-function SideBar({ isOpen, toggleOpen, openWidth, closedWidth, classes, children }: Props): JSX.Element {
-  
-  const navSpring = useSpring({ width: isOpen ? openWidth : closedWidth })
-
+function SideBar({ openWidth, closedWidth }: Props): JSX.Element {
+  const [open, setOpen] = useState(false)
+  const classes = useJSS(colors)
+  const navSpring = useSpring({ width: open ? openWidth : closedWidth })
+  function toggleOpen() {
+    setOpen(!open)
+  }
   return (
     <animated.div className={classes.SideBar} style={navSpring}>
       <SideBarButton 
-        isOpen={isOpen}
+        isOpen={open}
         openWidth={openWidth}
         closedWidth={closedWidth}
         openText='<'
@@ -31,7 +28,36 @@ function SideBar({ isOpen, toggleOpen, openWidth, closedWidth, classes, children
         onClick={toggleOpen}
         style={{ backgroundColor: colors.tertiary }}
       />
-      {children}
+      <SideBarButton 
+          isOpen={open}
+          openWidth={openWidth}
+          closedWidth={closedWidth}
+          openText='Home'
+          closedText='H'
+          onClick={() => {
+            navigate('/myreact-ts/')
+          }}
+        />
+        <SideBarButton 
+          isOpen={open}
+          openWidth={openWidth}
+          closedWidth={closedWidth}
+          openText='Tile Puzzle'
+          closedText='T'
+          onClick={() => {
+            navigate('/myreact-ts/tilepuzzle')
+          }}
+        />
+        <SideBarButton 
+          isOpen={open}
+          openWidth={openWidth}
+          closedWidth={closedWidth}
+          openText='Chess'
+          closedText='C'
+          onClick={() => {
+            navigate('/myreact-ts/chess')
+          }}
+        />
     </animated.div>
   )
 }

@@ -1,15 +1,13 @@
 import { createUseStyles } from 'react-jss'
-import { Theme } from '../appColors'
+import { Colors } from '../appColors'
 
-// useStyles will input a props object
-
-const useStyles = createUseStyles({
+const useJSS = createUseStyles({
   NavBar: {
     textAlign: 'center',
   },
 
   TopBar: {
-    backgroundColor: (theme: Theme) => theme.colors.primary,
+    backgroundColor: (colors: Colors) => colors.primary,
     width: '100vw',
     height: '80px',
     display: 'flex',
@@ -26,7 +24,7 @@ const useStyles = createUseStyles({
   },
 
   SideBar: {
-    backgroundColor: (theme: Theme) => theme.colors.secondary,
+    backgroundColor: (colors: Colors) => colors.secondary,
     height: 'calc(100vh - 100px)',
     display: 'flex',
     flexDirection: 'column',
@@ -46,7 +44,7 @@ const useStyles = createUseStyles({
   },
   
   AppContent: {
-    backgroundColor: (theme: Theme) => theme.colors.tertiary,
+    backgroundColor: (colors: Colors) => colors.tertiary,
     height: 'calc(100vh - 80px)',
     display: 'flex',
     alignItems: 'center',
@@ -64,4 +62,4 @@ const useStyles = createUseStyles({
   },
 })
 
-export default useStyles;
+export default useJSS;

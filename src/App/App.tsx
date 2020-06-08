@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import NavBar from './NavBar/main'
-import SideBarButton from './NavBar/SideBarButton'
-import { TilePuzzle, ChessGame, Switch } from '../components/all'
-import { Router, navigate } from '@reach/router'
-import useStyles from './style'
+import { TilePuzzle, ChessGame } from '../components/all'
+import { Router } from '@reach/router'
+import useJSS from './style'
 import colors from '../appColors'
 import Homepage from './Homepage'
 
@@ -21,61 +20,14 @@ const contentStyle = {
   left: closedWidth
 }
 
-function App(): JSX.Element {
-  const [open, toggle] = useState(true);
-
-  const classes = useStyles({ colors: colors})
-
-  function toggleOpen() {
-    toggle(!open)
-  }
-
+function App() {
+  const classes = useJSS(colors)
   return (
     <div>
-      <NavBar 
-        isOpen={open}
-        toggleOpen={toggleOpen}
+      <NavBar
         openWidth={openWidth}
         closedWidth={closedWidth}
-        classes={classes}
-      >
-        <SideBarButton 
-          isOpen={open}
-          openWidth={openWidth}
-          closedWidth={closedWidth}
-          openText='Home'
-          closedText='H'
-          onClick={() => {
-            navigate('/myreact-ts/')
-          }}
-        />
-        <SideBarButton 
-          isOpen={open}
-          openWidth={openWidth}
-          closedWidth={closedWidth}
-          openText='Tile Puzzle'
-          closedText='T'
-          onClick={() => {
-            navigate('/myreact-ts/tilepuzzle')
-          }}
-        />
-        <SideBarButton 
-          isOpen={open}
-          openWidth={openWidth}
-          closedWidth={closedWidth}
-          openText='Chess'
-          closedText='C'
-          onClick={() => {
-            navigate('/myreact-ts/chess')
-          }}
-        />
-        <Switch
-          text={'test'}
-          onSwitch={(value: boolean) => {console.log(`value: ${value}`)}}
-          initState={false}
-          style={{ width: '30vmin', height: '7vmin'}}
-        />
-      </NavBar>
+      />
       <Router className={classes.AppContent} style={contentStyle}>
         <Homepage path='/myreact-ts' />
         <TilePuzzle path='/myreact-ts/tilepuzzle' />
