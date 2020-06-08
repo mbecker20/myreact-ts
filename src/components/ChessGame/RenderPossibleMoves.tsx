@@ -1,6 +1,6 @@
 import React from 'react'
 import { ChessBoard, Piece, SpecialPossibleMove } from './types';
-import { movePiece } from './helpers'
+import movePiece from './helpers/movePiece'
 import PossibleMove from './PossibleMove';
 import { LayoutGrid } from '../Grid/types';
 

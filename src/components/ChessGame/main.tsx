@@ -3,7 +3,7 @@ import useStyles from './style'
 import Board from './Board'
 import { RouteComponentProps } from '@reach/router'
 import colors from '../../appColors'
-import { makeChessBoard } from './helpers'
+import makeChessBoard from './helpers/makeChessBoard'
 
 let chessBoard = makeChessBoard()
 
