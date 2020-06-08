@@ -2,18 +2,18 @@ import React from 'react'
 import { ChessBoard } from '../types'
 import { LayoutGrid } from '../../Grid/types';
 
-export function renderWhitePieces(chessBoard: ChessBoard, grid: LayoutGrid, state: number, setState: (state: number) => void) {
+export function renderWhitePieces(chessBoard: ChessBoard, grid: LayoutGrid, reRender: () => void) {
   return (
     Object.keys(chessBoard.aliveWhitePieces).map((ID) => {
       const piece = chessBoard.aliveWhitePieces[ID]
       function onClick() {
         piece.onClick()
-        setState(state + 1)
+        reRender()
       }
       function onDragStart() {
         if (!piece.isSelected) {
           piece.onClick()
-          setState(state + 1)
+          reRender()
         }
       }
       return (
@@ -23,18 +23,18 @@ export function renderWhitePieces(chessBoard: ChessBoard, grid: LayoutGrid, stat
   )
 }
 
-export function renderBlackPieces(chessBoard: ChessBoard, grid: LayoutGrid, state: number, setState: (state: number) => void) {
+export function renderBlackPieces(chessBoard: ChessBoard, grid: LayoutGrid, reRender: () => void) {
   return (
     Object.keys(chessBoard.aliveBlackPieces).map((ID) => {
       const piece = chessBoard.aliveBlackPieces[ID]
       function onClick() {
         piece.onClick()
-        setState(state + 1)
+        reRender()
       }
       function onDragStart() {
         if (!piece.isSelected) {
           piece.onClick()
-          setState(state + 1)
+          reRender()
         }
       }
       return (

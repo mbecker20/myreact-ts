@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { LayoutGrid } from '../Grid/types'
-import useStyles from './style'
+import useJSS from './style'
 import { useSpring } from 'react-spring'
 
 interface Props {
@@ -14,7 +14,7 @@ interface DragEvent {
 }
 
 function PossibleMove({ grid, gridPos, onClick}: Props) {
-  const classes = useStyles()
+  const classes = useJSS()
   const [isHighlighted, setHighlighted] = useState(false)
   const springStyle = useSpring({
     borderStyle: isHighlighted ? 'solid' : 'none',

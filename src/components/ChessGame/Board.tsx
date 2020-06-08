@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import makeLayoutGrid from '../Grid/main'
 import { ChessBoard } from './types'
 import BoardTile from './BoardTile'
@@ -8,7 +8,8 @@ import { renderHighlightedTiles } from './renderHighlightedTiles'
 import { useSpring } from 'react-spring'
 
 interface BoardProps {
-  chessBoard: ChessBoard
+  chessBoard: ChessBoard,
+  reRender: () => void
 }
 
 interface BoardContainerStyle {
@@ -23,8 +24,7 @@ const boardContainerStyle: BoardContainerStyle = {
 
 const grid = makeLayoutGrid(0, 8, 8)
 
-function Board({ chessBoard }: BoardProps) {
-  const [numClicks, setNumClicks] = useState(0)
+function Board({ chessBoard, reRender }: BoardProps) {
   const springStyle = useSpring({
     transform: chessBoard.isWhitesTurn ? 'scale(1)' : 'scale(1)',
     config: {
@@ -43,10 +43,10 @@ function Board({ chessBoard }: BoardProps) {
         })
       }).flat()}
       {renderHighlightedTiles(chessBoard, grid)}
-      {renderWhitePieces(chessBoard, grid, numClicks, setNumClicks)}
-      {renderBlackPieces(chessBoard, grid, numClicks, setNumClicks)}
-      {renderPossibleMoves(chessBoard, grid, numClicks, setNumClicks)}
-      {renderSpecialPossibleMoves(chessBoard, grid, numClicks, setNumClicks)}
+      {renderWhitePieces(chessBoard, grid, reRender)}
+      {renderBlackPieces(chessBoard, grid, reRender)}
+      {renderPossibleMoves(chessBoard, grid, reRender)}
+      {renderSpecialPossibleMoves(chessBoard, grid, reRender)}
     </grid.Container>
   )
 }

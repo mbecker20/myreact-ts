@@ -1,10 +1,13 @@
 import { createUseStyles } from 'react-jss'
 
-const useStyles = createUseStyles({
+const useJSS = createUseStyles({
   Piece: {
     width: '10vmin',
-    height: '8vmin'
+    height: '8vmin',
+    '&:hover': {
+      cursor: 'pointer'
+    },
   }
 })
 
-export default useStyles;
+export default useJSS;

@@ -1,8 +1,9 @@
 import {createUseStyles} from 'react-jss'
 
-const useStyles = createUseStyles({
+const useJSS = createUseStyles({
   Bounder: {
     position: 'absolute',
+    flexDirection: 'column',
     display: 'flex',
     width: '80vmin',
     height: '100%',
@@ -28,4 +29,4 @@ const useStyles = createUseStyles({
   },
 })
 
-export default useStyles;
+export default useJSS

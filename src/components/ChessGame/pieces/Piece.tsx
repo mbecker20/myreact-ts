@@ -1,11 +1,11 @@
 import React from 'react';
 import { BasePieceComponentProps } from '../types'
 import { gridPieceStyle } from './pieceStyle';
-import useStyles from './pieceJSS';
+import useJSS from './pieceJSS';
 import { useSpring } from 'react-spring'
 
 function Piece({ id, grid, gridPos, img, imgStyle, onClick, onDragStart, isWhitesTurn }: BasePieceComponentProps) {
-  const classes = useStyles()
+  const classes = useJSS()
   const springStyle = useSpring({ 
     transform: isWhitesTurn ? 'translate(-50%, -50%) rotate(0deg)' : 'translate(-50%, -50%) rotate(0deg)',
     config: {

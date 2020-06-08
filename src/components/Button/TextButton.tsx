@@ -3,7 +3,7 @@ import Button from './main'
 
 interface Props {
   text: string,
-  style: object,
+  style?: object,
   onClick: () => void
 }
 

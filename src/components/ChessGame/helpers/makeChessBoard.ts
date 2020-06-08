@@ -3,6 +3,7 @@ import { ChessBoard, Piece, KingPiece, PawnPiece, PieceID, BoardPos, BoardGrid, 
 import * as pieces from '../pieces/all'
 import showPossibleMoves from './possibleMoves'
 import movePiece from './movePiece'
+import { copyBoardGrid, copyTeam } from './moveList'
 
 function makeBoardGrid(): BoardGrid {
   return makeGrid(8, 8, (i, j) => {
@@ -137,10 +138,23 @@ function makeChessBoard(): ChessBoard {
     deadWhitePieces: {},
     aliveBlackPieces: {},
     deadBlackPieces: {},
+    currentMove: 0,
     chosenPiece: undefined,
   }
   chessBoard.aliveWhitePieces = makePieces(chessBoard, true)
   chessBoard.aliveBlackPieces = makePieces(chessBoard, false)
+  chessBoard.moveList[0] = {
+    boardGrid: copyBoardGrid(chessBoard.boardGrid),
+    moveID: 'startingPosition',
+    moveNumber: 0,
+    aliveWhitePieces: copyTeam(chessBoard.aliveWhitePieces),
+    aliveBlackPieces: copyTeam(chessBoard.aliveBlackPieces),
+    deadWhitePieces: copyTeam(chessBoard.deadWhitePieces),
+    deadBlackPieces: copyTeam(chessBoard.deadBlackPieces),
+    start: [0,0],
+    end: [0,0],
+    whitesMoveAfter: true,
+  }
   return chessBoard
 }
 

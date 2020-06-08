@@ -14,9 +14,11 @@ export default function movePiece(chessBoard: ChessBoard, piece: Piece, target: 
     chessBoard.boardGrid[target[0]][target[1]] = chessBoard.boardGrid[piece.position[0]][piece.position[1]]
     chessBoard.boardGrid[piece.position[0]][piece.position[1]] = 'E'
   }
-  addToMoveList(chessBoard, piece, piece.position, target)
-  chessBoard.highlightedTiles = [piece.position, target]
+  chessBoard.currentMove++
+  const startPos = piece.position
   piece.position = target
+  addToMoveList(chessBoard, piece, startPos, target, isWhite)
+  chessBoard.highlightedTiles = [startPos, target]
   chessBoard.possibleMoves = []
   chessBoard.specialPossibleMoves = []
 }
